@@ -1,28 +1,24 @@
-import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { checkAuthorization } from '../helpers/helpers';
+import React from "react";
+import { Route, Redirect } from "react-router-dom";
+import PropTypes from "prop-types";
+import { checkAuthorization } from "../helpers/helpers";
 
-const AuthRoute = ({
-  component: Component,
-  redirect: pathname,
-  ...rest
-}) => {
+const AuthRoute = ({ component: Component, redirect: pathname, ...rest }) => {
   const Routes = (props) => {
-    if(checkAuthorization() === false){
+    if (checkAuthorization() === false) {
       return (
         <Route
           {...rest}
-          render={props =>
-            <div className="authLayout">
+          render={(props) => (
+            <div className="authLayout bg-blue-600 flex h-screen">
               <Component {...rest} {...props} />
             </div>
-          }
+          )}
         />
       );
-    }else {
+    } else {
       return (
-        <Redirect 
+        <Redirect
           to={{
             pathname,
             state: { from: props.location },
@@ -30,13 +26,11 @@ const AuthRoute = ({
         />
       );
     }
-  }
-  return (
-    <Routes />
-  );
+  };
+  return <Routes />;
 };
 
-AuthRoute.defaultProps = { redirect: '/' };
+AuthRoute.defaultProps = { redirect: "/" };
 
 AuthRoute.propTypes = {
   component: PropTypes.object.isRequired,
