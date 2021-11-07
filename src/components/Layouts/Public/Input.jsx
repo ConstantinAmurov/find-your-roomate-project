@@ -23,8 +23,8 @@ const Input = ({
         onBlur={onBlur}
         className={
           error && touched
-            ? "form-control  border-2 p-4 border-red-500"
-            : "form-control  border-2 p-4 border-blue-600"
+            ? "form-input border-2 w-full block rounded-md border-red-500"
+            : "form-input border-2  w-full block rounded-md border-blue-600"
         }
       ></input>
       {error && touched && (

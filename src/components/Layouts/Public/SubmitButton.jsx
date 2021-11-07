@@ -1,6 +1,5 @@
 import React from "react";
-
-const LoginButton = ({ onClick, disabled }) => {
+const SubmitButton = ({ text, onClick, disabled }) => {
   return (
     <button
       type="submit"
@@ -8,9 +7,9 @@ const LoginButton = ({ onClick, disabled }) => {
       disabled={disabled}
       className=" w-100 flex flex-row bg-blue-700 text-white p-3 rounded-xl justify-center align-items-center "
     >
-      <span className="ml-3 text-white text-2xl">Login</span>
+      <span className="ml-3 text-white text-2xl">{text}</span>
     </button>
   );
 };
 
-export default LoginButton;
+export default SubmitButton;

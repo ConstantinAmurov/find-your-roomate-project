@@ -8,16 +8,14 @@ import * as Yup from "yup";
 //Components
 import FormContainer from "../../components/Layouts/Public/FormContainer";
 import PropTypes from "prop-types";
-import LoginButton from "../../components/Layouts/Public/LoginButton";
-import LoginRedirectButton from "../../components/Layouts/Public/LoginRedirectButton";
-import RegisterRedirectButton from "../../components/Layouts/Public/RegisterRedirectButton";
+import SubmitButton from "../../components/Layouts/Public/SubmitButton";
+import HeaderContainer from "../../components/Layouts/Public/HeaderContainer";
 import Input from "../../components/Layouts/Public/Input";
 //Functions
 import { loginRequest, loginPageInit } from "./actions";
 import { redirectForConfirm } from "../Register/ConfirmAccount/actions";
 import { browserRedirect } from "../../helpers/helpers";
 //Assets
-import logo from "../../assets/logo.svg";
 
 class Login extends Component {
   constructor(props) {
@@ -77,15 +75,8 @@ class Login extends Component {
         </div>
         <div className="row">
           <FormContainer>
-            <div className="row">
-              <div className="col">
-                <img src={logo}></img>
-              </div>
-              <div className="col flex justify-between  align-items-center text-lg">
-                <LoginRedirectButton></LoginRedirectButton>
-                <RegisterRedirectButton></RegisterRedirectButton>
-              </div>
-            </div>
+            <HeaderContainer />
+
             <Formik
               initialValues={{ email: "", password: "" }}
               onSubmit={this.props.onSubmitForm}
@@ -93,13 +84,15 @@ class Login extends Component {
                 email: Yup.string().email().required("Required"),
                 password: Yup.string().required("Required").min(6),
               })}
+              validateOnChange={false}
+              validateOnBlur={true}
             >
               {(props) => {
                 const {
                   values,
                   touched,
                   errors,
-                  isValid,
+
                   handleChange,
                   handleBlur,
                   handleSubmit,
@@ -130,7 +123,7 @@ class Login extends Component {
                       <div>
                         <input
                           type="checkbox"
-                          className=" mr-2"
+                          className="form-checkbox rounded mr-2"
                           checked={this.state.remember}
                           onChange={this.handleToggleChange}
                         ></input>
@@ -139,12 +132,12 @@ class Login extends Component {
                       <Link to="/forgot-password">Forgot Password?</Link>
                     </div>
                     <div className="m-auto w-100">
-                      <LoginButton
+                      <SubmitButton
+                        text="Login"
                         onClick={() => {
                           this.handleLoginSubmit(values.email);
                         }}
-                        disabled={!isValid}
-                      ></LoginButton>
+                      ></SubmitButton>
                     </div>
                   </form>
                 );
