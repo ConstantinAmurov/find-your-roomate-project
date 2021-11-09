@@ -51,7 +51,9 @@ class Register extends Component {
                   .matches(/^[a-zA-Z]+$/, "First name only allows alphabets.")
                   .required("First Name Required"),
                 lastName: Yup.string().required("Last Name Required"),
-                email: Yup.string().email().required("Email Required"),
+                email: Yup.string()
+                  .email("Must be a valid email")
+                  .required("Email Required"),
                 option: Yup.string().required("Option should be selected"),
                 password: Yup.string().required("Password Required").min(6),
                 termsAgree: Yup.bool()

@@ -1,14 +1,12 @@
 import {
-  LOGIN_PAGE_INIT,
-  LOGIN_ERROR,
-  LOGIN_REQUESTING,
-  LOGIN_SUCCESS,
+  FORGOT_PASSWORD_ERROR,
+  FORGOT_PASSWORD_SUCCESS,
+  FORGOT_PASSWORD_INIT,
+  FORGOT_PASSWORD_REQUESTING,
 } from "./actions";
 
-// The initial state of the Login Reducer
 export const initialState = {
-  id: "",
-  password: "",
+  email: "",
   requesting: false,
   successful: false,
   messages: [],
@@ -17,13 +15,13 @@ export const initialState = {
 
 export default function (state = initialState, actions) {
   switch (actions.type) {
-    case LOGIN_PAGE_INIT:
-      return { ...state, errors: {} };
-    case LOGIN_REQUESTING:
+    case FORGOT_PASSWORD_INIT:
+      return { ...state, errors: {}, successful: false };
+    case FORGOT_PASSWORD_REQUESTING:
       return { ...state, requesting: true };
-    case LOGIN_SUCCESS:
-      return { ...state, successful: true, user: { ...actions.payload } };
-    case LOGIN_ERROR:
+    case FORGOT_PASSWORD_SUCCESS:
+      return { ...state, successful: true };
+    case FORGOT_PASSWORD_ERROR:
       return { ...state, successful: false, errors: { ...actions.error } };
     default:
       return state;

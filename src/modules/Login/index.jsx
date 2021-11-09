@@ -81,7 +81,9 @@ class Login extends Component {
               initialValues={{ email: "", password: "" }}
               onSubmit={this.props.onSubmitForm}
               validationSchema={Yup.object().shape({
-                email: Yup.string().email().required("Required"),
+                email: Yup.string()
+                  .email("Must be a valid email")
+                  .required("Required"),
                 password: Yup.string().required("Required").min(6),
               })}
               validateOnChange={false}

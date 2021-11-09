@@ -11,7 +11,7 @@ const Logout = lazy(() => import("../Home/logout"));
 const Login = lazy(() => import("../Login"));
 const Register = lazy(() => import("../Register"));
 const ConfirmAccount = lazy(() => import("../Register/ConfirmAccount"));
-
+const ForgotPassword = lazy(() => import("../ForgotPassword"));
 // Root routes
 const Routes = () => (
   <Router history={history}>
@@ -21,6 +21,7 @@ const Routes = () => (
         <AuthRoute path="/login" component={Login} />
         <AuthRoute path="/register" component={Register} />
         <AuthRoute path="/confirm-account" component={ConfirmAccount} />
+        <AuthRoute path="/forgot-password" component={ForgotPassword} />
         <PrivateRoute path="/logout" component={Logout} />
       </Switch>
     </Suspense>
