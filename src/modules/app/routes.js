@@ -12,6 +12,7 @@ const Login = lazy(() => import("../Login"));
 const Register = lazy(() => import("../Register"));
 const ConfirmAccount = lazy(() => import("../Register/ConfirmAccount"));
 const ForgotPassword = lazy(() => import("../ForgotPassword"));
+const CreateNewPassword = lazy(() => import("../CreateNewPassword"));
 // Root routes
 const Routes = () => (
   <Router history={history}>
@@ -22,6 +23,8 @@ const Routes = () => (
         <AuthRoute path="/register" component={Register} />
         <AuthRoute path="/confirm-account" component={ConfirmAccount} />
         <AuthRoute path="/forgot-password" component={ForgotPassword} />
+        <AuthRoute path="/reset-password" component={CreateNewPassword} />
+
         <PrivateRoute path="/logout" component={Logout} />
       </Switch>
     </Suspense>
