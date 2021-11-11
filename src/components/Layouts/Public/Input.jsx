@@ -12,9 +12,7 @@ const Input = ({
 }) => {
   return (
     <div className="mb-3">
-      <label htmlFor="email" className="text-white text-lg">
-        {label}
-      </label>
+      <label className="text-white text-lg">{label}</label>
       <input
         type={type}
         id={id}

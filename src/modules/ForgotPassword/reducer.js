@@ -13,7 +13,7 @@ export const initialState = {
   errors: {},
 };
 
-export default function (state = initialState, actions) {
+export default function forgotReducer(state = initialState, actions) {
   switch (actions.type) {
     case FORGOT_PASSWORD_INIT:
       return { ...state, errors: {}, successful: false };

@@ -94,7 +94,6 @@ class Login extends Component {
                   values,
                   touched,
                   errors,
-
                   handleChange,
                   handleBlur,
                   handleSubmit,
