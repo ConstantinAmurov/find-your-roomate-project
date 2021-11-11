@@ -53,12 +53,19 @@ const SetupAccount = () => {
             }}
           >
             {(props) => {
-              const { values, errors, setFieldValue, handleBlur } = props;
+              const {
+                values,
+                errors,
+                handleChange,
+                setFieldValue,
+                handleBlur,
+              } = props;
               return renderStepSwitch(step, {
                 setFieldValue,
                 errors,
                 values,
                 handleBlur,
+                handleChange,
               });
             }}
           </Formik>

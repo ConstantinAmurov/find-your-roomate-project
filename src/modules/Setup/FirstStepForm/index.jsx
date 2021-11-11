@@ -8,7 +8,7 @@ const options = [
 ];
 
 const FirstStepForm = ({ props }) => {
-  const { setFieldValue, values, handleBlur } = props;
+  const { setFieldValue, handleChange, values, handleBlur } = props;
 
   const form = { setFieldValue };
 
@@ -25,7 +25,14 @@ const FirstStepForm = ({ props }) => {
           ></Select>
         </div>
         <div className="col">
-          <Input label="Date of Birth" type="date"></Input>
+          <Input
+            id="dateOfBirth"
+            value={values["dateOfBirth"]}
+            label="Date of Birth"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            type="date"
+          ></Input>
         </div>
       </div>
       <div className="row">
