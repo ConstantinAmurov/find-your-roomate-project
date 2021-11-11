@@ -1,5 +1,5 @@
 //React
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 //Components
 import FormContainer from "../../components/Layouts/Public/FormContainer";
@@ -19,7 +19,7 @@ const ForgotPassword = () => {
   const showMessage = useSelector((state) => state.forgotPassword.successful);
   useEffect(() => {
     dispatch(forgotPasswordInit());
-  }, []);
+  });
   return (
     <div className="container m-auto">
       <div className="row text-center">
@@ -57,8 +57,6 @@ const ForgotPassword = () => {
                     values,
                     touched,
                     errors,
-                    isSubmitting,
-                    setFieldValue,
                     handleChange,
                     handleBlur,
                     handleSubmit,

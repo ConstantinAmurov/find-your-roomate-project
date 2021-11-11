@@ -6,7 +6,7 @@ const HeaderContainer = () => {
   return (
     <div className="row">
       <div className="col">
-        <img src={logo}></img>
+        <img alt="" src={logo}></img>
       </div>
       <div className="col flex justify-between  align-items-center text-lg">
         <LoginRedirectButton></LoginRedirectButton>

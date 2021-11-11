@@ -14,7 +14,7 @@ export const initialState = {
   errors: {},
 };
 
-export default function (state = initialState, actions) {
+export default function resetPasswordReducer(state = initialState, actions) {
   switch (actions.type) {
     case CREATE_NEW_PASSWORD_INIT:
       return { ...state, errors: {}, successful: false, requesting: false };

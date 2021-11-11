@@ -30,7 +30,7 @@ export const initialState = {
   resend_success: {},
 };
 
-export default function (state = initialState, actions) {
+export default function registerReducer(state = initialState, actions) {
   switch (actions.type) {
     case REGISTER_PAGE_INIT:
       return { ...state, errors: {} };

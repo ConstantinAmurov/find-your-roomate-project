@@ -66,8 +66,6 @@ class Register extends Component {
                   values,
                   touched,
                   errors,
-
-                  isSubmitting,
                   setFieldValue,
                   handleChange,
                   handleBlur,

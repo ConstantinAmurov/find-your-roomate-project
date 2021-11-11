@@ -1,10 +1,9 @@
 import React from "react";
 
-import Select from "../../../components/Layouts/Public/CustomSelectComponent";
 import Input from "../../../components/Layouts/Public/Input";
 
 const SecondStepForm = ({ props }) => {
-  const { setFieldValue, values, handleBlur, handleChange } = props;
+  const { values, handleBlur, handleChange } = props;
 
   return (
     <div className="mt-2 mb-2">

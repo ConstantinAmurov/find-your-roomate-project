@@ -15,7 +15,7 @@ export const initialState = {
   errors: {},
 };
 
-export default function (state = initialState, actions) {
+export default function loginReducer(state = initialState, actions) {
   switch (actions.type) {
     case LOGIN_PAGE_INIT:
       return { ...state, errors: {} };

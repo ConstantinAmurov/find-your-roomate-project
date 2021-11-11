@@ -16,7 +16,7 @@ const CreateNewPassword = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(createNewPasswordInit());
-  }, []);
+  });
 
   return (
     <div className="container m-auto">
@@ -59,8 +59,6 @@ const CreateNewPassword = () => {
                 values,
                 touched,
                 errors,
-                isSubmitting,
-                setFieldValue,
                 handleChange,
                 handleBlur,
                 handleSubmit,

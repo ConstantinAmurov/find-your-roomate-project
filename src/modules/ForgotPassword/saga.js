@@ -18,6 +18,8 @@ function* forgotPasswordWorker({ payload }) {
   try {
     let response = yield call(forgotPasswordCall, payload);
     yield put(forgotPasswordSuccess());
+    console.log(response);
+
     yield call(browserRedirect, "/");
   } catch (err) {
     yield put(forgotPasswordError(err.response.data));

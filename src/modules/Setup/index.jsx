@@ -48,7 +48,8 @@ const SetupAccount = () => {
               city: "",
               roommatePreferences: {
                 gender: null,
-                ageRange: [null, null],
+                minAgeRange: null,
+                maxAgeRange: null,
               },
             }}
           >
@@ -80,7 +81,8 @@ const SetupAccount = () => {
               className="pt-2 pb-2 pl-4 pr-4 rounded-full text-white bg-blue-700 flex align-items-center justify-between"
               onClick={() => nextStep()}
             >
-              <FiArrowRightCircle className="mr-3" /> Next
+              <FiArrowRightCircle className="mr-3" />{" "}
+              {step !== 3 ? "Next" : "Finish"}
             </button>
           </div>
         </FormContainer>

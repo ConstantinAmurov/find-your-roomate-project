@@ -18,6 +18,7 @@ function* createNewPasswordWorker({ payload }) {
   try {
     let response = yield call(createNewPasswordCall, payload);
     yield put(createNewPasswordSuccess());
+    console.log(response);
     yield call(browserRedirect, "/");
   } catch (err) {
     yield put(createNewPasswordError(err.response.data));
