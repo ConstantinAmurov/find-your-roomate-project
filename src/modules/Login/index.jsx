@@ -1,23 +1,32 @@
+//React
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
+//Formik
 import { Formik } from "formik";
 import * as Yup from "yup";
-import "./login.css";
+//Components
+import FormContainer from "../../components/Layouts/Public/FormContainer";
 import PropTypes from "prop-types";
+import SubmitButton from "../../components/Layouts/Public/SubmitButton";
+import HeaderContainer from "../../components/Layouts/Public/HeaderContainer";
+import Input from "../../components/Layouts/Public/Input";
+//Functions
 import { loginRequest, loginPageInit } from "./actions";
-import FlashMessage from "../../components/FlashMessage/FlashMessage";
 import { redirectForConfirm } from "../Register/ConfirmAccount/actions";
 import { browserRedirect } from "../../helpers/helpers";
+//Assets
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
       email: "",
+      remember: false,
     };
     this.handleConfirmClick = this.handleConfirmClick.bind(this);
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
+    this.handleToggleChange = this.handleToggleChange.bind(this);
   }
 
   messageForConfirm() {
@@ -44,110 +53,98 @@ class Login extends Component {
   handleLoginSubmit(email) {
     this.setState({ email });
   }
+  handleToggleChange = () => this.setState({ remember: !this.state.remember });
 
   render() {
     let { errors } = this.props;
-    debugger;
     let err_message = errors.data ? errors.data : errors.message;
     let confirm_message =
       err_message === "Account is not confirmed. Please confirm your account."
         ? true
         : false;
     return (
-      <div className="container">
+      <div className="container m-auto ">
         <div className="row">
           <div className="col-md-6 mx-auto">
             {Object.keys(errors).length > 0 && (
               <div>
-                <FlashMessage data={err_message} alertClass="danger" />
                 {confirm_message && <div>{this.messageForConfirm()}</div>}
               </div>
             )}
           </div>
         </div>
         <div className="row">
-          <div className="col-md-6 mx-auto">
-            <h1>Login</h1>
+          <FormContainer>
+            <HeaderContainer />
+
             <Formik
               initialValues={{ email: "", password: "" }}
               onSubmit={this.props.onSubmitForm}
               validationSchema={Yup.object().shape({
-                email: Yup.string().email().required("Required"),
+                email: Yup.string()
+                  .email("Must be a valid email")
+                  .required("Required"),
                 password: Yup.string().required("Required").min(6),
               })}
+              validateOnChange={false}
+              validateOnBlur={true}
             >
               {(props) => {
                 const {
                   values,
                   touched,
                   errors,
-                  isValid,
                   handleChange,
                   handleBlur,
                   handleSubmit,
                 } = props;
                 return (
-                  <form onSubmit={handleSubmit}>
-                    <div className="form-group">
-                      <label htmlFor="exampleInputEmail1">Email address</label>
-                      <input
-                        type="email"
-                        id="email"
-                        value={values.email}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        className={
-                          errors.email && touched.email
-                            ? "form-control text-input error"
-                            : "form-control text-input"
-                        }
-                        placeholder="Enter email"
-                      />
-                      {errors.email && touched.email && (
-                        <div className="input-feedback">{errors.email}</div>
-                      )}
-                      <small id="emailHelp" className="form-text text-muted">
-                        We'll never share your email with anyone else.
-                      </small>
+                  <form onSubmit={handleSubmit} className="row flex-col">
+                    <Input
+                      label="Email Address"
+                      type="email"
+                      id="email"
+                      value={values.email}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      error={errors.email}
+                      touched={touched.email}
+                    />
+                    <Input
+                      label="Password"
+                      type="password"
+                      id="password"
+                      value={values.password}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      error={errors.password}
+                      touched={touched.password}
+                    ></Input>
+                    <div className="w-100 flex justify-between mb-3 text-white text-lg">
+                      <div>
+                        <input
+                          type="checkbox"
+                          className="form-checkbox rounded mr-2"
+                          checked={this.state.remember}
+                          onChange={this.handleToggleChange}
+                        ></input>
+                        <span>Remember me</span>
+                      </div>
+                      <Link to="/forgot-password">Forgot Password?</Link>
                     </div>
-                    <div className="form-group">
-                      <label htmlFor="exampleInputPassword1">Password</label>
-                      <input
-                        type="password"
-                        id="password"
-                        value={values.password}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        className={
-                          errors.password && touched.password
-                            ? "form-control text-input error"
-                            : "form-control text-input"
-                        }
-                        placeholder="Password"
-                      />
-                      {errors.password && touched.password && (
-                        <div className="input-feedback">{errors.password}</div>
-                      )}
-                    </div>
-                    <button
-                      type="submit"
-                      className="btn btn-primary"
-                      onClick={() => {
-                        this.handleLoginSubmit(values.email);
-                      }}
-                      disabled={!isValid}
-                    >
-                      Submit
-                    </button>
-                    <div className="form-group">
-                      Not registered yet? Register from{" "}
-                      <Link to="/register">here</Link>.
+                    <div className="m-auto w-100">
+                      <SubmitButton
+                        text="Login"
+                        onClick={() => {
+                          this.handleLoginSubmit(values.email);
+                        }}
+                      ></SubmitButton>
                     </div>
                   </form>
                 );
               }}
             </Formik>
-          </div>
+          </FormContainer>
         </div>
       </div>
     );
