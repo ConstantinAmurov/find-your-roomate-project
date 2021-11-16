@@ -3,8 +3,8 @@ import React from "react";
 import Input from "../../../components/Layouts/Public/Input";
 
 const SecondStepForm = ({ props }) => {
-  const { values, handleBlur, handleChange } = props;
-
+  const { handleChange, values, handleBlur, errors, touched } = props;
+  console.log(errors);
   return (
     <div className="mt-2 mb-2">
       <h1 className="text-5xl text-white text-center">Where</h1>
@@ -17,6 +17,8 @@ const SecondStepForm = ({ props }) => {
             type="text"
             onChange={handleChange}
             onBlur={handleBlur}
+            error={errors.country}
+            touched={touched.country}
           ></Input>
         </div>
         <div className="col">
@@ -27,6 +29,8 @@ const SecondStepForm = ({ props }) => {
             type="text"
             onChange={handleChange}
             onBlur={handleBlur}
+            error={errors.city}
+            touched={touched.city}
           ></Input>
         </div>
       </div>

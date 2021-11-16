@@ -10,6 +10,7 @@ import { FiArrowLeftCircle } from "react-icons/fi";
 import { FiArrowRightCircle } from "react-icons/fi";
 
 import { Formik } from "formik";
+import * as Yup from "yup";
 
 const SetupAccount = () => {
   const [step, setStep] = useState(1);
@@ -41,16 +42,48 @@ const SetupAccount = () => {
           <img alt="logo" src={logo} className="w-50 m-auto "></img>
           <Formik
             initialValues={{
-              gender: null,
-              dateOfBirth: null,
+              gender: "",
+              dateOfBirth: "",
               passions: [],
               country: "",
               city: "",
               roommatePreferences: {
-                gender: null,
-                minAgeRange: null,
-                maxAgeRange: null,
+                gender: "",
+                minAgeRange: "",
+                maxAgeRange: "",
               },
+            }}
+            validateOnChange={true}
+            validateOnBlur={true}
+            validationSchema={Yup.object().shape({
+              gender: Yup.string().required("Required"),
+              dateOfBirth: Yup.date().required("Required"),
+              passions: Yup.array()
+                .required("Required")
+                .min(1, "At least 1 passion required"),
+              country: Yup.string().required("Required"),
+              city: Yup.string().required("Required"),
+              roommatePreferences: Yup.object().shape({
+                gender: Yup.string().required("Required"),
+                minAgeRange: Yup.number()
+                  .required("Required")
+                  .positive("Should be a positive number")
+                  .integer("Should be an integer number")
+                  .max(100, "Too old"),
+
+                maxAgeRange: Yup.number()
+                  .required("Required")
+                  .positive("Should be a positive number")
+                  .integer("Should be an integer number")
+                  .moreThan(
+                    Yup.ref("minAgeRange"),
+                    "Maximum age should be greated than minimum age"
+                  )
+                  .max(100, "Too old"),
+              }),
+            })}
+            onSubmit={(values) => {
+              console.log(values);
             }}
           >
             {(props) => {
@@ -59,32 +92,42 @@ const SetupAccount = () => {
                 errors,
                 handleChange,
                 setFieldValue,
+                setFieldTouched,
+                handleSubmit,
                 handleBlur,
+                touched,
               } = props;
-              return renderStepSwitch(step, {
-                setFieldValue,
-                errors,
-                values,
-                handleBlur,
-                handleChange,
-              });
+              return (
+                <>
+                  {renderStepSwitch(step, {
+                    setFieldValue,
+                    setFieldTouched,
+                    errors,
+                    values,
+                    handleBlur,
+                    handleChange,
+                    touched,
+                  })}
+                  <div className="flex justify-between">
+                    <button
+                      className="pt-2 pb-2 pl-4 pr-4 rounded-full text-white bg-blue-700 flex align-items-center justify-between"
+                      onClick={() => prevStep()}
+                    >
+                      <FiArrowLeftCircle className="mr-3" /> Back
+                    </button>
+                    <button
+                      className="pt-2 pb-2 pl-4 pr-4 rounded-full text-white bg-blue-700 flex align-items-center justify-between"
+                      onClick={() => (step !== 3 ? nextStep() : handleSubmit())}
+                      type={step !== 3 ? "" : "submit"}
+                    >
+                      <FiArrowRightCircle className="mr-3" />{" "}
+                      {step !== 3 ? "Next" : "Finish"}
+                    </button>
+                  </div>
+                </>
+              );
             }}
           </Formik>
-          <div className="flex justify-between">
-            <button
-              className="pt-2 pb-2 pl-4 pr-4 rounded-full text-white bg-blue-700 flex align-items-center justify-between"
-              onClick={() => prevStep()}
-            >
-              <FiArrowLeftCircle className="mr-3" /> Back
-            </button>
-            <button
-              className="pt-2 pb-2 pl-4 pr-4 rounded-full text-white bg-blue-700 flex align-items-center justify-between"
-              onClick={() => nextStep()}
-            >
-              <FiArrowRightCircle className="mr-3" />{" "}
-              {step !== 3 ? "Next" : "Finish"}
-            </button>
-          </div>
         </FormContainer>
       </div>
     </div>

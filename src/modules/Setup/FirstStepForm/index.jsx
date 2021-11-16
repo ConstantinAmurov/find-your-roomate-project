@@ -8,10 +8,17 @@ const options = [
 ];
 
 const FirstStepForm = ({ props }) => {
-  const { setFieldValue, handleChange, values, handleBlur } = props;
+  const {
+    setFieldValue,
+    setFieldTouched,
+    handleChange,
+    values,
+    handleBlur,
+    errors,
+    touched,
+  } = props;
 
-  const form = { setFieldValue };
-
+  const form = { setFieldValue, setFieldTouched };
   return (
     <div className="mt-2 mb-2">
       <h1 className="text-5xl text-white text-center">About you</h1>
@@ -22,6 +29,8 @@ const FirstStepForm = ({ props }) => {
             options={options}
             field={{ name: "gender", handleBlur, value: values["gender"] }}
             form={form}
+            error={errors.gender}
+            touched={touched.gender}
           ></Select>
         </div>
         <div className="col">
@@ -32,6 +41,8 @@ const FirstStepForm = ({ props }) => {
             onChange={handleChange}
             onBlur={handleBlur}
             type="date"
+            touched={touched.dateOfBirth}
+            error={errors.dateOfBirth}
           ></Input>
         </div>
       </div>
@@ -43,6 +54,8 @@ const FirstStepForm = ({ props }) => {
             field={{ name: "passions", handleBlur, value: values["passions"] }}
             form={form}
             isMulti={true}
+            touched={touched.passions}
+            error={errors.passions}
           ></Select>
         </div>
       </div>

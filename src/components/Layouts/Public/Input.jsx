@@ -4,6 +4,8 @@ const Input = ({
   label,
   type,
   id,
+  min = 10,
+  max = 100,
   value,
   onChange,
   onBlur,
@@ -16,6 +18,8 @@ const Input = ({
       <input
         type={type}
         id={id}
+        min={min}
+        max={max}
         value={value}
         onChange={onChange}
         onBlur={onBlur}

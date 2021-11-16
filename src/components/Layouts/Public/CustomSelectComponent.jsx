@@ -1,11 +1,13 @@
 import React from "react";
 import Select from "react-select";
 
-const customStyles = {
-  control: (styles, { isFocused }) => ({
+const customStyles = (isError) => ({
+  control: (styles) => ({
     ...styles,
     backgroundColor: "white",
-    border: "2px solid #2563EB !important",
+    border: isError
+      ? "2px solid #f43f5e  !important"
+      : "2px solid #2563EB !important",
     padding: "2px",
   }),
   option: (styles, { data, isDisabled, isFocused, isSelected }) => {
@@ -16,7 +18,7 @@ const customStyles = {
       cursor: isDisabled ? "not-allowed" : "default",
     };
   },
-};
+});
 
 const CustomSelectComponent = ({
   label,
@@ -24,6 +26,8 @@ const CustomSelectComponent = ({
   field,
   form,
   isMulti = false,
+  touched,
+  error,
 }) => {
   const onChange = (option) => {
     form.setFieldValue(
@@ -31,7 +35,9 @@ const CustomSelectComponent = ({
       isMulti ? option.map((item) => item.value) : option.value
     );
   };
-
+  const onBlur = () => {
+    form.setFieldTouched(field.name);
+  };
   const getValue = () => {
     if (options) {
       return isMulti
@@ -50,10 +56,13 @@ const CustomSelectComponent = ({
         name={field.name}
         value={getValue()}
         onChange={(option) => onChange(option)}
-        onBlur={field.handleBlur}
-        styles={customStyles}
+        onBlur={onBlur}
+        styles={customStyles(error && touched)}
         isMulti={isMulti}
       ></Select>
+      {error && touched && (
+        <div className="text-red-500 text-sm mt-1">{error}</div>
+      )}
     </div>
   );
 };
