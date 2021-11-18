@@ -15,11 +15,11 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`transition-all  duration-500  fixed top-0 ${
+      className={`transition-all  duration-500  fixed top-0 z-20 ${
         isSidebarOpen ? "left-0" : "-left-72"
       }`}
     >
-      <div className="flex h-screen overflow-y-auto flex-col bg-white  w-72 px-4 py-8 border-r min-h-screen relative">
+      <div className="flex h-screen overflow-y-auto flex-col bg-white  w-72 px-4 py-8 border-r min-h-screen relative  ">
         <button
           onClick={() => dispatch(toggleSideBar())}
           className="absolute top-1 right-1  text-gray-600 w-8 h-8 rounded-full flex items-center justify-center active:bg-gray-300 focus:outline-none ml-6 hover:bg-gray-200 hover:text-gray-800"
