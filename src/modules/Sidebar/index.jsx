@@ -1,6 +1,7 @@
 import React from "react";
 import { HiX } from "react-icons/hi";
 import { MdSettings } from "react-icons/md";
+import { FiLogOut } from "react-icons/fi";
 import { links } from "./data";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -68,6 +69,12 @@ const Sidebar = () => {
             <h4 className="mx-2 font-medium text-gray-800 hover:underline cursor-pointer">
               John Doe
             </h4>
+            <a
+              href="/logout"
+              className="flex items-center px-2 py-1 ml-3 rounded-md text-gray-600 hover:text-gray-700 hover:bg-gray-200 transition-colors transform"
+            >
+              <FiLogOut className="m-2 rounded-md text-gray-600 hover:text-gray-700 hover:bg-gray-200 transition-colors transform" />
+            </a>
           </div>
         </div>
       </div>
