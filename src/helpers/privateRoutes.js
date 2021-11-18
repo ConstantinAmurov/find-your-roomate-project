@@ -2,7 +2,9 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { checkAuthorization } from '../helpers/helpers';
-import Header from '../components/Layouts/Private/Header';
+
+import Home from '../modules/Home';
+import Sidebar from '../modules/Sidebar';
 
 const PrivateRoute = ({
   component: Component,
@@ -10,21 +12,22 @@ const PrivateRoute = ({
   ...rest
 }) => {
   const Routes = (props) => {
-    if(checkAuthorization() === true){
+    if (checkAuthorization() === true) {
       return (
         <Route
           {...rest}
           render={props =>
-            <div className="privateLayout">
-              <Header />
+            <div className="privateRoute">
+              <Home></Home>
+              <Sidebar />
               <Component {...rest} {...props} />
             </div>
           }
         />
       );
-    }else {
+    } else {
       return (
-        <Redirect 
+        <Redirect
           to={{
             pathname,
             state: { from: props.location },
@@ -32,7 +35,7 @@ const PrivateRoute = ({
         />
       );
     }
-  }
+  };
   return (
     <Routes />
   );

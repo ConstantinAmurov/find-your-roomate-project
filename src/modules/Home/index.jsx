@@ -1,30 +1,26 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-class Home extends Component {
-  render() {
-    const user = JSON.parse(localStorage.getItem("user"));
-    return (
-      <div className="container">
-        <div className="row vh-100">
-          <div className="col-md-6 mx-auto my-auto">
-            <div className="jumbotron text-center">
-              <h1 className="display-4">
-                Hello, {user.firstName} {user.lastName}!
-              </h1>
-              <Link
-                to="manage-book"
-                className="btn btn-primary btn-lg"
-                role="button"
-              >
-                Lets start collecting the Books?
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
+import { FaBars } from "react-icons/fa";
+
+//Actions
+import { toggleSideBar } from "./actions";
+const Home = () => {
+  const dispatch = useDispatch();
+  const isSidebarOpen = useSelector((state) => state.dashboard.isSidebarOpen);
+
+  return (
+    <main>
+      <button
+        onClick={() => dispatch(toggleSideBar())}
+        className={`${
+          isSidebarOpen ? "-translate-x-8" : "translate-x-0"
+        } fixed top-2 transition transform ease-linear duration-500 text-gray-600 w-8 h-8 rounded-full flex items-center justify-center active:bg-gray-300 focus:outline-none ml-8 hover:bg-gray-200 hover:text-gray-800`}
+      >
+        <FaBars className="w-5 h-5" />
+      </button>
+    </main>
+  );
+};
 
 export default Home;
