@@ -14,7 +14,6 @@ const ThirdStepForm = ({ props }) => {
     touched,
   } = props;
 
-  debugger;
   const form = { setFieldValue, setFieldTouched };
   const options = [
     { value: "M", label: "Male" },

@@ -4,6 +4,7 @@ import registerReducer from "../Register/reducer";
 import forgotPasswordReducer from "../ForgotPassword/reducer";
 import resetPasswordReducer from "../CreateNewPassword/reducer";
 import dashboardReducer from "../Home/reducer";
+import notificationReducer from "../../components/Layouts/Public/NotificationsComponent/reducer";
 
 export const mainReducer = combineReducers({
   login: loginReducer,
@@ -11,4 +12,5 @@ export const mainReducer = combineReducers({
   forgotPassword: forgotPasswordReducer,
   resetPassword: resetPasswordReducer,
   dashboard: dashboardReducer,
+  notifications: notificationReducer,
 });

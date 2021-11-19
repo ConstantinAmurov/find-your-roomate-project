@@ -10,7 +10,7 @@ const Dashboard = lazy(() => import('../Dashboard'));
 const Matches = lazy(() => import('../Matches'));
 const Rooms = lazy(() => import('../Rooms'));
 const Logout = lazy(() => import("../Dashboard/logout"));
-const Login = lazy(() => import("../Login"));
+const Login = lazy(() => import("../Login/index"));
 const Register = lazy(() => import("../Register"));
 const ConfirmAccount = lazy(() => import("../Register/ConfirmAccount"));
 const ForgotPassword = lazy(() => import("../ForgotPassword"));

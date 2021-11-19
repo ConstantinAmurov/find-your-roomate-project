@@ -14,12 +14,24 @@ import * as Yup from "yup";
 //Actions
 import { forgotPasswordInit, forgotPasswordSuccess } from "./actions";
 
+import { useMutation } from "react-query";
+import { forgotPassword } from "../../api/Forgot Password API";
+
 const ForgotPassword = () => {
   const dispatch = useDispatch();
+  const { isLoading, mutate } = useMutation(forgotPassword);
+
   const showMessage = useSelector((state) => state.forgotPassword.successful);
   useEffect(() => {
     dispatch(forgotPasswordInit());
   });
+  let token = document.head.querySelector('meta[name="csrf-token"]');
+  debugger;
+  console.log(token);
+  const onSubmit = (values) => {
+    debugger;
+    mutate(values);
+  };
   return (
     <div className="container m-auto">
       <div className="row text-center">
@@ -41,9 +53,7 @@ const ForgotPassword = () => {
                 initialValues={{
                   email: "",
                 }}
-                onSubmit={(values) => {
-                  dispatch(forgotPasswordSuccess());
-                }}
+                onSubmit={onSubmit}
                 validateOnChange={false}
                 validateOnBlur={true}
                 validationSchema={Yup.object().shape({
