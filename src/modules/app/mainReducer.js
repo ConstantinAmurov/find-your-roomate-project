@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import loginReducer from "../Login/reducer";
 import registerReducer from "../Register/reducer";
 import forgotPasswordReducer from "../ForgotPassword/reducer";
-import resetPasswordReducer from "../CreateNewPassword/reducer";
+import resetPasswordReducer from "../ResetPassword/reducer";
 import dashboardReducer from "../Home/reducer";
 import notificationReducer from "../../components/Layouts/Public/NotificationsComponent/reducer";
 
