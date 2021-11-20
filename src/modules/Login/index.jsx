@@ -2,8 +2,6 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useMutation } from "react-query";
 
-import "react-toastify/dist/ReactToastify.css";
-
 import { login } from "../../api/Login API";
 import { loginSuccess } from "./actions";
 import {
@@ -16,7 +14,7 @@ import LoginComponent from "./login";
 
 const Index = () => {
   //Hooks
-  const { data, isLoading, mutate, error } = useMutation(login);
+  const { mutate } = useMutation(login);
   const dispatch = useDispatch();
   const onSubmit = (values) => {
     mutate(values, {
@@ -26,7 +24,7 @@ const Index = () => {
         dispatch(successNotification("Successfuly Logged in"));
         browserRedirect("/");
       },
-      onError: (error) => {
+      onError: () => {
         dispatch(errorNotification("Error on logging in"));
       },
     });

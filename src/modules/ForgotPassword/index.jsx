@@ -6,35 +6,31 @@ import FormContainer from "../../components/Layouts/Public/FormContainer";
 import HeaderContainer from "../../components/Layouts/Public/HeaderContainer";
 import Input from "../../components/Layouts/Public/Input";
 import SubmitButton from "../../components/Layouts/Public/SubmitButton";
-import CheckYourEmail from "./CheckYourEmail";
+import CheckYourEmail from "../CheckYourEmail";
 //Formik
 import { Formik } from "formik";
 import * as Yup from "yup";
 
 //Actions
-import { forgotPasswordInit, forgotPasswordSuccess } from "./actions";
+import { forgotPasswordInit } from "./actions";
 
 import { useMutation } from "react-query";
 import { forgotPassword } from "../../api/Forgot Password API";
 
 const ForgotPassword = () => {
   const dispatch = useDispatch();
-  const { isLoading, mutate } = useMutation(forgotPassword);
+  const { mutate } = useMutation(forgotPassword);
 
   const showMessage = useSelector((state) => state.forgotPassword.successful);
   useEffect(() => {
     dispatch(forgotPasswordInit());
   });
-  let token = document.head.querySelector('meta[name="csrf-token"]');
-  debugger;
-  console.log(token);
   const onSubmit = (values) => {
-    debugger;
     mutate(values);
   };
   return (
     <div className="container m-auto">
-      <div className="row text-center">
+      <div className="row text-center ">
         <FormContainer>
           <HeaderContainer />
 
