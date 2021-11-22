@@ -5,12 +5,14 @@ import { FiLogOut } from "react-icons/fi";
 import { links } from "./data";
 
 import { useSelector, useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
 import { toggleSideBar } from "../Home/actions";
 
 import Logo from "../../assets/Logo.png";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
   const isSidebarOpen = useSelector((state) => state.dashboard.isSidebarOpen);
 
   return (
@@ -32,26 +34,40 @@ const Sidebar = () => {
         <div className="flex flex-col mt-6  justify-between flex-1">
           <nav className="text">
             {links.map((link, index) => {
-              const { id, url, text, icon } = link;
+              const { id, url, text, icon, sublinks } = link;
               return (
-                <a
-                  key={id}
-                  href={url}
-                  className={`capitalize flex items-center px-4 py-2 ${
-                    index === 0 ? "bg-blue-600 text-white" : null
-                  } ${
-                    index > 0
-                      ? "mt-4 text-gray-600 hover:bg-gray-200 hover:text-gray-700 transition-colors duration-200 transform"
-                      : null
-                  } rounded-md`}
-                >
-                  {icon}
-                  <span className="mx-4 font-medium">{text}</span>
-                </a>
+                <>
+                  <a
+                    key={id}
+                    href={url}
+                    className={`capitalize flex items-center px-4 py-2 ${
+                      pathname === url ? "bg-blue-600 text-white" : null
+                    } mt-4 text-gray-600 hover:bg-gray-200 hover:text-gray-700 transition-colors duration-200 transform rounded-md`}
+                  >
+                    {icon}
+                    <span className="mx-4 font-medium">{text}</span>
+                  </a>
+                  {sublinks &&
+                    sublinks.map((sublink) => {
+                      const { id, url, text, icon } = sublink;
+                      return (
+                        <a
+                          key={id}
+                          href={url}
+                          className={`capitalize text-xs m-3 mb-1 flex px-4 py-2 ${
+                            pathname === url ? "bg-blue-600 text-white" : null
+                          } 
+                           "mt-1 text-gray-600 hover:bg-gray-200 hover:text-gray-700 transition-colors duration-200 transform" rounded-md`}
+                        >
+                          <span className="mr-4">{icon} </span>
+                          <span className="font-medium">{text}</span>
+                        </a>
+                      );
+                    })}
+                </>
               );
             })}
             <hr className="my-6" />
-
             <a
               href="/settings"
               className="flex items-center px-4 py-2 mt-5 rounded-md text-gray-600 hover:text-gray-700 hover:bg-gray-200 transition-colors transform"

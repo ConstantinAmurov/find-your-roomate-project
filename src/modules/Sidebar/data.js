@@ -21,8 +21,23 @@ export const links = [
 	{
 		id: 2,
 		url: '/matches',
-		text: 'matches',
+		text: 'My matches',
 		icon: <FaUserFriends className="w-5 h-5" />,
+		sublinks: [
+			{
+				id: 3,
+				url: "/requested-matches",
+				text: "Requested Matches",
+				icon: <FaUserFriends className="w-3 h-3" />,
+
+			}, {
+				id: 3,
+				url: "/incoming-matches",
+				text: "Incoming Matches",
+				icon: <FaUserFriends className="w-3 h-3" />,
+
+			}
+		]
 	},
 	{
 		id: 3,

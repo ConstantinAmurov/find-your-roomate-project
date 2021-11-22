@@ -9,6 +9,8 @@ import Spinner from "../../components/Spinner/Spinner";
 // Lazy loading of all the components.
 const Dashboard = lazy(() => import('../Dashboard'));
 const Matches = lazy(() => import('../Matches'));
+const RequestedMatches = lazy(() => import('../Matches/Requested Matches'));
+const IncomingMatches = lazy(() => import('../Matches/Incoming Matches'));
 const Rooms = lazy(() => import('../Rooms'));
 const Logout = lazy(() => import("../Dashboard/logout"));
 const Login = lazy(() => import("../Login/index"));
@@ -32,6 +34,9 @@ const Routes = () => (
         <PrivateRoute exact path="/" component={Dashboard} />
         <PrivateRoute exact path="/user/:id" component={User} />
         <PrivateRoute exact path="/matches" component={Matches} />
+        <PrivateRoute exact path="/requested-matches" component={RequestedMatches} />
+        <PrivateRoute exact path="/incoming-matches" component={IncomingMatches} />
+
         <PrivateRoute exact path="/rooms" component={Rooms} />
         <PrivateRoute path="/logout" component={Logout} />
       </Switch>
