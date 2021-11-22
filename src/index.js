@@ -2,16 +2,37 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 //import App from './App';
-import App from './modules/app/routes'
+import App from './modules/app/routes';
+import NotificationsComponent from './components/Layouts/Public/NotificationsComponent';
 import * as serviceWorker from './serviceWorker';
+
+//Redux setup
 import { Provider } from "react-redux";
 import store from "./config/store";
+
+//React Query setup
+import {
+    QueryClient,
+    QueryClientProvider,
+} from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
+
+
 require('dotenv').config();
 
+// Create a client
+const queryClient = new QueryClient();
+
 ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
+
+    <QueryClientProvider client={queryClient}>
+        <Provider store={store}>
+            <NotificationsComponent />
+            <App />
+        </Provider >
+        <ReactQueryDevtools initialIsOpen={true} />
+    </QueryClientProvider>
+    ,
     document.getElementById('root')
 );
 

@@ -2,6 +2,8 @@ import React from "react";
 
 import { ImUser } from "react-icons/im";
 import { AiFillCheckCircle, AiFillCloseCircle } from "react-icons/ai";
+import { browserRedirect } from "../../helpers/helpers";
+
 const UserBox = ({ data, index }) => {
   return (
     <div
@@ -24,18 +26,21 @@ const UserBox = ({ data, index }) => {
         <div className="col text-center">
           <button className="  flex-row justify-between p-2 rounded-md hover:bg-gray-100 hover:text-blue-500 transition-colors transform">
             <AiFillCheckCircle className="text-5xl m-auto" />
-            <p>Accept</p>
+            <p>Send Request</p>
           </button>
         </div>
         <div className="col text-center">
           <button className="  flex-row justify-between p-2 rounded-md hover:bg-gray-100 hover:text-blue-500 transition-colors transform">
             <AiFillCloseCircle className="text-5xl m-auto" />
-            <p>Reject</p>
+            <p>Decline match</p>
           </button>
         </div>
       </div>
       <div className="row mt-3">
-        <button className="m-auto font-bold p-2 rounded-md hover:bg-gray-100 hover:text-blue-500 transition-colors transform">
+        <button
+          onClick={() => browserRedirect(`user/${data.id}`)}
+          className="m-auto font-bold p-2 rounded-md hover:bg-gray-100 hover:text-blue-500 transition-colors transform"
+        >
           View profile
         </button>
       </div>
