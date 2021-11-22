@@ -1,16 +1,18 @@
 import React from "react";
 
 import { ImUser } from "react-icons/im";
-import { AiFillCheckCircle, AiFillCloseCircle } from "react-icons/ai";
+
 import { browserRedirect } from "../../helpers/helpers";
 
-const UserBox = ({ data, index }) => {
+const UserBox = ({ data, index, children }) => {
   return (
     <div
       key={index}
-      className="rounded-md bg-blue-500 text-white col-2 m-8 ml-0 p-4"
+      className="rounded-md bg-blue-500 text-white m-8 col-3 p-4 "
     >
-      <h1 className="text-center text-3xl font-bold">{data.name}</h1>
+      <h1 className="text-center text-3xl font-bold h-14 max-h-14">
+        {data.name}
+      </h1>
       <div className="row mt-3">
         <div className="col">
           <ImUser className="text-9xl" />
@@ -22,21 +24,7 @@ const UserBox = ({ data, index }) => {
           </div>
         </div>
       </div>
-      <div className="row mt-4 text-xl">
-        <div className="col text-center">
-          <button className="  flex-row justify-between p-2 rounded-md hover:bg-gray-100 hover:text-blue-500 transition-colors transform">
-            <AiFillCheckCircle className="text-5xl m-auto" />
-            <p>Send Request</p>
-          </button>
-        </div>
-        <div className="col text-center">
-          <button className="  flex-row justify-between p-2 rounded-md hover:bg-gray-100 hover:text-blue-500 transition-colors transform">
-            <AiFillCloseCircle className="text-5xl m-auto" />
-            <p>Decline match</p>
-          </button>
-        </div>
-      </div>
-      <div className="row mt-3">
+      <div className="row mt-2">
         <button
           onClick={() => browserRedirect(`user/${data.id}`)}
           className="m-auto font-bold p-2 rounded-md hover:bg-gray-100 hover:text-blue-500 transition-colors transform"
@@ -44,6 +32,7 @@ const UserBox = ({ data, index }) => {
           View profile
         </button>
       </div>
+      {children}
     </div>
   );
 };
