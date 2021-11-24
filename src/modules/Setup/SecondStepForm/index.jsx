@@ -7,7 +7,7 @@ const SecondStepForm = ({ props }) => {
   console.log(errors);
   return (
     <div className="mt-2 mb-2">
-      <h1 className="text-5xl text-white text-center">Where</h1>
+      <h1 className="text-5xl text-white text-center">Where are you from?</h1>
       <div className="row mt-3">
         <div className="col">
           <Input

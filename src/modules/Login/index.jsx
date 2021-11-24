@@ -8,7 +8,7 @@ import {
   successNotification,
   errorNotification,
 } from "../../components/Layouts/Public/NotificationsComponent/actions";
-import { setAuthToken, browserRedirect } from "../../helpers/helpers";
+import { setAuthToken, setUser, browserRedirect } from "../../helpers/helpers";
 
 import LoginComponent from "./login";
 
@@ -20,7 +20,11 @@ const Index = () => {
     mutate(values, {
       onSuccess: (data) => {
         setAuthToken(data.token);
+        setUser(data.user);
         dispatch(loginSuccess(data.user));
+
+        //temporary fix for auth
+
         dispatch(successNotification("Successfuly Logged in"));
         browserRedirect("/");
       },

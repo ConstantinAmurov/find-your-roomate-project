@@ -1,10 +1,12 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
+import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import { checkAuthorization } from "../helpers/helpers";
 
 const AuthRoute = ({ component: Component, redirect: pathname, ...rest }) => {
   const Routes = (props) => {
+
     if (checkAuthorization() === false) {
       return (
         <Route

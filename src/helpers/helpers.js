@@ -22,7 +22,14 @@ export const browserRedirect = (location) => {
 
 
 export const setAuthToken = (value) => window.localStorage.setItem('token', value);
+export const setUser = (value) => window.localStorage.setItem('user', JSON.stringify(value));
 
+export const getUser = () => JSON.parse(window.localStorage.getItem('user'));
+
+export const deleteUser = () => {
+  localStorage.removeItem('user');
+  localStorage.removeItem('token');
+};
 export const checkAuthorization = () => {
   const storedToken = localStorage.getItem("token");
 

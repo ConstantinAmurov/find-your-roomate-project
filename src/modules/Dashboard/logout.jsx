@@ -1,14 +1,12 @@
-import React, {Component} from 'react';
-import { Redirect } from 'react-router-dom';
+import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
+import { deleteUser } from "../../helpers/helpers";
 
 class Logout extends Component {
-    render(){
-        localStorage.removeItem('user');
-        localStorage.removeItem('token');
-        return (
-            <Redirect to='/login' />
-        );
-    }
+  render() {
+    deleteUser();
+    return <Redirect to="/login" />;
+  }
 }
 
 export default Logout;
