@@ -1,4 +1,4 @@
-import { SUCCESS_NOTIFICATION, ERROR_NOTIFICATION, RESET_NOTIFICATION } from "./actions";
+import { SUCCESS_NOTIFICATION, ERROR_NOTIFICATION, RESET_NOTIFICATION,WARN_NOTIFICATION } from "./actions";
 
 export const initialState = {
     info: {
@@ -19,6 +19,13 @@ export default function notificationReducer(state = initialState, actions) {
             return {
                 ...state, info: {
                     type: 'error', message: actions.payload
+                }
+            };
+        }
+        case WARN_NOTIFICATION: {
+            return {
+                ...state, info: {
+                    type: 'warn', message: actions.payload
                 }
             };
         }

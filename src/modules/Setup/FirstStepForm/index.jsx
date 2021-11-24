@@ -2,12 +2,10 @@ import React from "react";
 
 import Select from "../../../components/Layouts/Public/CustomSelectComponent";
 import Input from "../../../components/Layouts/Public/Input";
-const options = [
-  { value: "M", label: "Male" },
-  { value: "F", label: "Female" },
-];
 
-const FirstStepForm = ({ props }) => {
+import { genderOptions,passionsOptions } from "../constants";
+
+const FirstStepForm = ({ props, type }) => {
   const {
     setFieldValue,
     setFieldTouched,
@@ -26,7 +24,7 @@ const FirstStepForm = ({ props }) => {
         <div className="col">
           <Select
             label="Gender"
-            options={options}
+            options={genderOptions}
             field={{ name: "gender", handleBlur, value: values["gender"] }}
             form={form}
             error={errors.gender}
@@ -35,28 +33,34 @@ const FirstStepForm = ({ props }) => {
         </div>
         <div className="col">
           <Input
-            id="dateOfBirth"
-            value={values["dateOfBirth"]}
+            id="birthday"
+            value={values["birthday"]}
             label="Date of Birth"
             onChange={handleChange}
             onBlur={handleBlur}
             type="date"
-            touched={touched.dateOfBirth}
-            error={errors.dateOfBirth}
+            touched={touched.birthday}
+            error={errors.birthday}
           ></Input>
         </div>
       </div>
       <div className="row">
         <div className="col">
-          <Select
-            label="Passions"
-            options={options}
-            field={{ name: "passions", handleBlur, value: values["passions"] }}
-            form={form}
-            isMulti={true}
-            touched={touched.passions}
-            error={errors.passions}
-          ></Select>
+          {type === "user" && (
+            <Select
+              label="Passions"
+              options={passionsOptions}
+              field={{
+                name: "passions",
+                handleBlur,
+                value: values["passions"],
+              }}
+              form={form}
+              isMulti={true}
+              touched={touched.passions}
+              error={errors.passions}
+            ></Select>
+          )}
         </div>
       </div>
     </div>

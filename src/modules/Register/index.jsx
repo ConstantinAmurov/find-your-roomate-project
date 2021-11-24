@@ -23,6 +23,7 @@ const Index = () => {
       name: `${values["firstName"]} ${values["lastName"]}`,
       email: values.email,
       password: values.password,
+      type: values.type,
     };
 
     mutate(data, {

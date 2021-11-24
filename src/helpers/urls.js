@@ -3,7 +3,5 @@ export const urls = {
     'REGISTER_URL': '/register',
     'FORGOT_PASSWORD_URL': '/forgot-password',
     'RESET_PASSWORD_URL': '/reset-password',
-    'BOOK': '/book',
-    'VERIFY_CONFIRM_OTP': '/auth/verify-otp',
-    'RESEND_CONFIRM_OTP': '/auth/resend-verify-otp'
+    'SETUP_ACCOUNT': '/setup-account'
 };

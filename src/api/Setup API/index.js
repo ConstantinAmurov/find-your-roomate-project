@@ -2,10 +2,11 @@ import { urls } from "../../helpers/urls";
 
 import { request } from "../../helpers/requests";
 
-export const register = async (values) => {
-    try {
+export const setupAccount = async ({ id, values }) => {
 
-        const { data } = await request('post', urls.REGISTER_URL, values, null);
+    try {
+        debugger;
+        const { data } = await request('post', `${urls.SETUP_ACCOUNT}/${id}`, values, null);
         return data;
     }
     catch (error) {

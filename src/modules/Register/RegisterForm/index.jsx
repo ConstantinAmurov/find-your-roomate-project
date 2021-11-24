@@ -16,7 +16,7 @@ const RegisterForm = (props) => {
         firstName: "",
         lastName: "",
         email: "",
-        option: "",
+        type: "",
         termsAgree: false,
         password: "",
       }}
@@ -31,7 +31,7 @@ const RegisterForm = (props) => {
         email: Yup.string()
           .email("Must be a valid email")
           .required("Email Required"),
-        option: Yup.string().required("Option should be selected"),
+        type: Yup.string().required("Option should be selected"),
         password: Yup.string().required("Password Required").min(6),
         termsAgree: Yup.bool()
           .required("You should accept the terms and conditions")
@@ -101,36 +101,36 @@ const RegisterForm = (props) => {
             />
             <div className="row mt-4 mb-4 ">
               <div
-                onClick={() => setFieldValue("option", "haveRoom")}
+                onClick={() => setFieldValue("type", "owner")}
                 className="cursor-pointer select-none  col flex  align-items-center justify-center"
               >
                 <Field
                   type="checkbox"
-                  name="haveRoom"
+                  name="owner"
                   id=""
-                  checked={values.option === "haveRoom" ? true : false}
+                  checked={values.type === "owner" ? true : false}
                   className="form-checkbox rounded"
                   onChange={handleChange}
                 />
                 <span className="text-white ml-2 text-lg">I Have a room</span>
               </div>
               <div
-                onClick={() => setFieldValue("option", "needRoom")}
+                onClick={() => setFieldValue("type", "user")}
                 className="cursor-pointer select-none col flex  align-items-center justify-center"
               >
                 <Field
                   type="checkbox"
-                  name="needRoom"
+                  name="user"
                   id=""
-                  checked={values.option === "needRoom" ? true : false}
+                  checked={values.type === "user" ? true : false}
                   className="form-checkbox rounded"
                   onChange={handleChange}
                 />
                 <span className="text-white ml-2 text-lg">I Need a room</span>
               </div>
-              {errors.option && touched.option && (
+              {errors.type && touched.type && (
                 <div className="text-red-500 text-sm mt-2 col-12 flex justify-center">
-                  {errors.option}
+                  {errors.type}
                 </div>
               )}
             </div>

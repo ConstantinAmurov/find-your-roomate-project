@@ -1,10 +1,15 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { checkAuthorization } from '../helpers/helpers';
+import { warnNotification } from '../components/Layouts/Public/NotificationsComponent/actions';
+import { getUser } from '../helpers/helpers';
 
 import Home from '../modules/Home';
 import Sidebar from '../modules/Sidebar';
+import SetupAccount from '../modules/Setup';
+
 
 const PrivateRoute = ({
   component: Component,
@@ -12,19 +17,38 @@ const PrivateRoute = ({
   ...rest
 }) => {
   const Routes = (props) => {
+
+    const user = getUser();
+    const dispatch = useDispatch();
+
     if (checkAuthorization() === true) {
-      return (
-        <Route
+
+      if (user && user.gender) {
+        return (
+          <Route
+            {...rest}
+            render={props =>
+              <div className="privateRoute">
+                <Home></Home>
+                <Sidebar />
+                <Component {...rest} {...props} />
+              </div>
+            }
+          />
+        );
+      }
+
+      else {
+        dispatch(warnNotification("Your account is not setup, we redirected you"));
+        return (<Route
           {...rest}
           render={props =>
-            <div className="privateRoute">
-              <Home></Home>
-              <Sidebar />
-              <Component {...rest} {...props} />
+            <div className="publicRoute">
+              <SetupAccount type={user.type}/>
             </div>
           }
-        />
-      );
+        />);
+      }
     } else {
       return (
         <Redirect
@@ -48,4 +72,4 @@ PrivateRoute.propTypes = {
   redirect: PropTypes.string,
 };
 
-export default PrivateRoute;
+export default PrivateRoute;;;;;
