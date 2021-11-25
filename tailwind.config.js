@@ -14,6 +14,9 @@ module.exports = {
       red: colors.rose,
     },
     extend: {
+      transitionProperty: {
+        height: 'height'
+      },
     },
   },
   variants: {
@@ -21,6 +24,7 @@ module.exports = {
       backgroundColor: ['active'],
       borderWidth: ['hover', 'focus'],
       transform: ['hover'],
+      
     },
   },
   plugins: [

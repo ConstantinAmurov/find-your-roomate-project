@@ -13,6 +13,7 @@ const Matches = lazy(() => import('../Matches'));
 const RequestedMatches = lazy(() => import('../Matches/Requested Matches'));
 const IncomingMatches = lazy(() => import('../Matches/Incoming Matches'));
 const Rooms = lazy(() => import('../Rooms'));
+const Room = lazy(()=> import('../Room'))
 const Logout = lazy(() => import("../Dashboard/logout"));
 const Login = lazy(() => import("../Login/index"));
 const Register = lazy(() => import("../Register"));
@@ -37,6 +38,7 @@ const Routes = () => (
         <PrivateRoute exact path="/requested-matches" component={RequestedMatches} />
         <PrivateRoute exact path="/incoming-matches" component={IncomingMatches} />
         <PrivateRoute exact path="/rooms" component={Rooms} />
+        <PrivateRoute exact path="/room/:id" component={Room} />
         <PrivateRoute exact path="/setup-account" component={SetupAccount} />
         <PrivateRoute path="/logout" component={Logout} />
       </Switch>
