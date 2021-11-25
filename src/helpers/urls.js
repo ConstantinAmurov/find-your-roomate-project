@@ -3,5 +3,8 @@ export const urls = {
     'REGISTER_URL': '/register',
     'FORGOT_PASSWORD_URL': '/forgot-password',
     'RESET_PASSWORD_URL': '/reset-password',
-    'SETUP_ACCOUNT': '/setup-account'
+    'SETUP_ACCOUNT': '/setup-account',
+    'ALL_ROOM': "/all-room",
+    'GET_ROOM': '/get-room'
+    
 };
