@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { checkAuthorization } from '../helpers/helpers';
+import { checkAuthorization, checkUserSetup } from '../helpers/helpers';
 import { warnNotification } from '../components/Layouts/Public/NotificationsComponent/actions';
 import { getUser } from '../helpers/helpers';
 
@@ -17,48 +17,41 @@ const PrivateRoute = ({
   ...rest
 }) => {
   const Routes = (props) => {
-
-    const user = getUser();
     const dispatch = useDispatch();
-
     if (checkAuthorization() === true) {
-
-      if (user && user.gender) {
-        return (
-          <Route
-            {...rest}
-            render={props =>
-              <div className="privateRoute">
-                <Home></Home>
-                <Sidebar />
-                <Component {...rest} {...props} />
-              </div>
-            }
-          />
-        );
-      }
-
+      if (checkUserSetup()) return (
+        <Route
+          {...rest}
+          render={props =>
+            <div className="privateRoute">
+              <Home></Home>
+              <Sidebar />
+              <Component {...rest} {...props} />
+            </div>
+          }
+        />
+      );
       else {
         dispatch(warnNotification("Your account is not setup, we redirected you"));
         return (<Route
           {...rest}
           render={props =>
             <div className="publicRoute">
-              <SetupAccount type={user.type}/>
+              <SetupAccount type={getUser().type} />
             </div>
           }
         />);
       }
-    } else {
-      return (
-        <Redirect
-          to={{
-            pathname,
-            state: { from: props.location },
-          }}
-        />
-      );
     }
+    return (
+      <Redirect
+        to={{
+          pathname,
+          state: { from: props.location },
+        }}
+      />
+    );
+
   };
   return (
     <Routes />

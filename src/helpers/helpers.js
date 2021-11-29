@@ -38,3 +38,13 @@ export const checkAuthorization = () => {
   }
   return false;
 };
+
+
+export const checkUserSetup = () => {
+  const user = getUser();
+  if (user.gender) {
+    return true;
+  }
+  debugger;
+  return false;
+};
