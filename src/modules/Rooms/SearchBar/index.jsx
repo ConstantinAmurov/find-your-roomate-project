@@ -10,11 +10,11 @@ const SearchBar = () => {
 
   return (
     <div
-      className={`transition-height duration-150 h-10 ${isOpen && 'h-56'} px-20 py-1 text-white w-full bg-blue-500 cursor-pointer`}
+      className={` transition-height duration-150 h-10 ${isOpen && 'h-80'} px-20 py-1  w-full bg-blue-500 cursor-pointer`}
     >
       <span
         onClick={() => setIsOpen(!isOpen)}
-        className="flex text-2xl font-bold align-items-center"
+        className="flex text-2xl text-white font-bold align-items-center"
       >
         <AiOutlineArrowDown
           className={`mr-3 text-3xl  transition-transform transform ${
