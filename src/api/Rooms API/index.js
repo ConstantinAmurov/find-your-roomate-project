@@ -24,3 +24,13 @@ export const getRoom = async (values) => {
     }
 
 };
+
+export const addRoom = async ({ id, values }) => {
+    try {
+        const { data } = await request('post', `${urls.ADD_ROOM}/${id}`, values, null);
+        return data;
+    }
+    catch (error) {
+        throw Error(error);
+    }
+};
