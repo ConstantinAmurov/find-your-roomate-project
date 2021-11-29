@@ -1,30 +1,95 @@
 import React from "react";
 
-import {BsSearch} from "react-icons/bs"
+//Formik
+import { BsSearch } from "react-icons/bs";
 import Input from "../../../../components/Layouts/Public/Input";
-const SearchForm = () => {
+import { Formik } from "formik";
+import * as Yup from "yup";
+const SearchForm = (props) => {
+  const { onSubmit } = props;
   return (
-    <div classname="container">
-      <div className="row my-3">
-        <div className="col">
-          <Input label="Country" type="text"></Input>
-        </div>
-        <div className="col">
-          <Input label="City" type="text"></Input>
-        </div>
+    <Formik
+      initialValues={{ country: "", city: "", number_of_rooms: 1, max_rent: 0 }}
+      onSubmit={onSubmit}
+      validateOnChange={false}
+      validateOnBlur={true}
+    >
+      {(props) => {
+        const {
+          values,
+          touched,
+          errors,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+        } = props;
+        return (
+          <form onSubmit={handleSubmit} classname="container">
+            <div className="row my-3">
+              <div className="col-4">
+                <Input
+                  label="Country"
+                  type="text"
+                  id="country"
+                  value={values.country}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={errors.country}
+                  touched={touched.country}
+                ></Input>
+              </div>
+              <div className="col-4">
+                <Input
+                  label="City"
+                  type="text"
+                  id="city"
+                  value={values.city}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={errors.city}
+                  touched={touched.city}
+                ></Input>
+              </div>
 
-        <div className="col">
-          <Input label="Number of Bedrooms" type="number"></Input>
-        </div>
-      </div>
-      <div className="row">
-        <div className="col">
-          <button className=" text-xl flex align-items-center  font-bold flex py-2 px-4 rounded-md hover:bg-gray-100 hover:text-blue-500 transition-colors transform">
-          <BsSearch className="mr-2"/> Search
-          </button>
-        </div>
-      </div>
-    </div>
+              <div className="col-4">
+                <Input
+                  label="Number of Bedrooms"
+                  type="number"
+                  id="number_of_rooms"
+                  min={1}
+                  value={values.number_of_rooms}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={errors.number_of_rooms}
+                  touched={touched.number_of_rooms}
+                ></Input>
+              </div>
+              <div className="col-4">
+                <Input
+                  label="Maximum Rent"
+                  type="number"
+                  id="max_rent"
+                  min={0}
+                  max={100000}
+                  value={values.max_rent}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={errors.max_rent}
+                  touched={touched.max_rent}
+                ></Input>
+              </div>
+            </div>
+            <div className="row ">
+              <div className="col flex justify-content-end">
+                <button className=" text-2xl text-white flex align-items-center  font-bold flex py-2 px-4 rounded-md hover:bg-gray-100 hover:text-blue-500 transition-colors transform">
+                  <BsSearch className="mr-2" /> Search
+                </button>
+              </div>
+            </div>
+          </form>
+        );
+      }}
+    </Formik>
   );
 };
 
