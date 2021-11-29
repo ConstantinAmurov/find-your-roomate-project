@@ -7,6 +7,7 @@ import PrivateRoute from "../../helpers/privateRoutes"; // Private Routes, Will 
 
 import AuthRoute from "../../helpers/authRoutes"; // Auth Routes, Will only accessible before login.
 import Spinner from "../../components/Spinner/Spinner";
+import AddProperty from "modules/AddProperty";
 
 // Lazy loading of all the components.
 const Dashboard = lazy(() => import('../Dashboard'));
@@ -43,6 +44,9 @@ const App = () => {
           <PrivateRoute exact path="/rooms" component={Rooms} />
           <PrivateRoute exact path="/room/:id" component={Room} />
           <PrivateRoute exact path="/setup-account" component={SetupAccount} />
+          <PrivateRoute exact path="/add-property" component={AddProperty} />
+
+        
           <PrivateRoute path="/logout" component={Logout} />
         </Switch>
       </Suspense>
