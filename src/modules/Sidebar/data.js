@@ -7,11 +7,11 @@ import {
 	FaSketch,
 	FaHome,
 	FaUserFriends,
-	FaFolderOpen,
+	FaFolderOpen,FaPlus
 
 } from 'react-icons/fa';
 
-export const links = [
+export const userLinks = [
 	{
 		id: 1,
 		url: '/',
@@ -31,7 +31,7 @@ export const links = [
 				icon: <FaUserFriends className="w-3 h-3" />,
 
 			}, {
-				id: 3,
+				id: 4,
 				url: "/incoming-matches",
 				text: "Incoming Matches",
 				icon: <FaUserFriends className="w-3 h-3" />,
@@ -47,6 +47,34 @@ export const links = [
 	},
 
 ];
+
+export const adminLinks = [
+	{
+		id: 1,
+		url: '/',
+		text: 'dashboard',
+		icon: <FaHome className="w-5 h-5" />,
+		sublinks: [
+			{
+				id: 2,
+				url: "/add-property",
+				text: "Add Property",
+				icon: <FaPlus className="w-3 h-3" />,
+
+			},
+		]
+	},
+	{
+		id: 3,
+		url: '/requests',
+		text: 'Requests',
+		icon: <FaUserFriends className="w-5 h-5" />,
+	},
+
+];
+
+
+
 
 export const social = [
 	{

@@ -5,7 +5,7 @@ const RegisterButton = () => {
   return (
     <button
       onClick={() => browserRedirect("register")}
-      className="w-36 h-50 flex flex-row bg-white border-2 border-blue-700 text-white p-3 rounded-xl  justify-center align-items-center"
+      className="w-36 h-50 flex flex-row bg-white border-2 border-blue-600 text-blue-600 p-3 rounded-xl  justify-center align-items-center"
     >
       <FiUser className=" text-blue-700"></FiUser>
       <span className="ml-3 text-blue-700">Register</span>

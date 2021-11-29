@@ -2,7 +2,9 @@ import React from "react";
 import { HiX } from "react-icons/hi";
 import { MdSettings } from "react-icons/md";
 import { FiLogOut } from "react-icons/fi";
-import { links } from "./data";
+import { userLinks, adminLinks } from "./data";
+
+import { getUser } from "../../helpers/helpers";
 
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
@@ -13,8 +15,21 @@ import Logo from "../../assets/Logo.png";
 const Sidebar = () => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
+  const user = getUser();
   const isSidebarOpen = useSelector((state) => state.dashboard.isSidebarOpen);
 
+
+  let links;
+  switch (user.type) {
+    case "user":
+      links = userLinks;
+      break;
+    case "owner":
+      links = adminLinks;
+      break;
+    default:
+      links = userLinks;
+  }
   return (
     <div
       className={`transition-all  duration-500  fixed top-0 z-20 ${
