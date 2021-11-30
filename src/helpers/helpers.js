@@ -42,7 +42,7 @@ export const checkAuthorization = () => {
 
 export const checkUserSetup = () => {
   const user = getUser();
-  if (user.gender) {
+  if (user.is_setup) {
     return true;
   }
   debugger;

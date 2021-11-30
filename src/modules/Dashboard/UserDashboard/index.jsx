@@ -8,13 +8,14 @@ import Spinner from "components/Spinner/Spinner";
 
 import AcceptButton from "components/Layouts/Private/AcceptButton";
 import DeclineButton from "components/Layouts/Private/RejectButton";
-import UserBox from "modules/UserBox"
+import UserBox from "modules/UserBox";
+import { getUser } from "api/Users API";
 const UserDashboard = (props) => {
-    const dispatch = useDispatch()
-    const id = 1;
-  
-    const { isLoading, error, data } = useQuery(`pendingMatches[${id}]`, () =>
-    getPendingMatches(id)
+  const dispatch = useDispatch();
+  const id = 7;
+
+  const { isLoading, error, data } = useQuery(`pendingMatches[${id}]`, () =>
+    getUser(id)
   );
   if (isLoading) return <Spinner />;
 
@@ -32,20 +33,19 @@ const UserDashboard = (props) => {
     <div className="m-16 container">
       <h1 className="text-blue-500 text-3xl font-bold row">Matched Users</h1>
       <div className="row">
-        {data.map((data, index) => {
-          return (
-            <UserBox index={index} data={data}>
-              <div className="row mt-1 text-lg">
-                <div className="col text-center">
-                  <AcceptButton />
-                </div>
-                <div className="col text-center">
-                  <DeclineButton />
-                </div>
-              </div>
-            </UserBox>
-          );
-        })}
+        {/* {data.map((data, index) => {
+          return ( */}
+        <UserBox index={1} data={data}>
+          <div className="row mt-1 text-lg">
+            <div className="col text-center">
+              <AcceptButton />
+            </div>
+            <div className="col text-center">
+              <DeclineButton />
+            </div>
+          </div>
+        </UserBox>
+        {/* ); })} */}
       </div>
     </div>
   );

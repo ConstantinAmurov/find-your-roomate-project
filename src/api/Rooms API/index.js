@@ -14,9 +14,10 @@ export const getRooms = async (values) => {
     }
 };
 
-export const getRoom = async (values) => {
+export const getRoom = async (id) => {
     try {
-        const { data } = await request('get', `${urls.GET_ROOM}/${values.id}`, values, null);
+        debugger;
+        const { data } = await request('get', `${urls.GET_ROOM}/${id}`, null);
         return data;
     }
     catch (error) {
@@ -28,6 +29,16 @@ export const getRoom = async (values) => {
 export const addRoom = async ({ id, values }) => {
     try {
         const { data } = await request('post', `${urls.ADD_ROOM}/${id}`, values, null);
+        return data;
+    }
+    catch (error) {
+        throw Error(error);
+    }
+};
+
+export const deleteRoom = async ({ id, values }) => {
+    try {
+        const { data } = await request('post', `${urls.DELETE_ROOM}/${id}`, values, null);
         return data;
     }
     catch (error) {

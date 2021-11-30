@@ -2,14 +2,14 @@ import React from "react";
 import { MdOutlineBedroomParent } from "react-icons/md";
 import { browserRedirect } from "../../helpers/helpers";
 const RoomBox = ({ data, index, children }) => {
-    debugger;
+  debugger;
   return (
     <div
       key={index}
       className="rounded-md bg-blue-500 text-white m-8 col-3 p-4 "
     >
       <h1 className="text-center text-3xl font-bold h-14 max-h-14">
-     Rent name
+        {data.country} - {data.city}
       </h1>
       <div className="row mt-3">
         <div className="col">
@@ -17,8 +17,8 @@ const RoomBox = ({ data, index, children }) => {
         </div>
         <div className="col flex align-items-center  text-center  justify-center">
           <div className="text-xl">
-            <h1 className="text-2xl font-bold">20$</h1>
             <span>Price</span>
+            <h1 className="text-2xl font-bold">{data.rent} euro</h1>
           </div>
         </div>
       </div>

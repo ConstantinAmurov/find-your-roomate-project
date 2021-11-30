@@ -5,7 +5,9 @@ export const urls = {
     'RESET_PASSWORD_URL': '/reset-password',
     'SETUP_ACCOUNT': '/setup-account',
     'ALL_ROOM': "/all-room",
-    'GET_ROOM': '/get-room',
-    'ADD_ROOM': '/add-room'
-
+    'GET_ROOM': '/room',
+    'ADD_ROOM': '/add-room',
+    'DELETE_ROOM': "/delete-room",
+    'GET_USER': '/user',
+    'GET_OWNER': '/owner',
 };

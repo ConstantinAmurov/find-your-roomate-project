@@ -18,7 +18,6 @@ const Sidebar = () => {
   const user = getUser();
   const isSidebarOpen = useSelector((state) => state.dashboard.isSidebarOpen);
 
-
   let links;
   switch (user.type) {
     case "user":
@@ -91,18 +90,18 @@ const Sidebar = () => {
               <span className="mx-4 font-medium">Settings</span>
             </a>
           </nav>
-          <div className="flex items-center px-4 -mx-2 mt-5">
+          <div className="flex items-center  mt-5">
             <img
               src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
               alt="avatar"
-              className="h-9 w-9 mx-2 object-center object-cover rounded-full"
+              className="h-9 w-9 object-center object-cover rounded-full"
             />
-            <h4 className="mx-2 font-medium text-gray-800 hover:underline cursor-pointer">
-              John Doe
+            <h4 className="mx-1 font-medium text-gray-800 hover:underline cursor-pointer">
+              {user.name}
             </h4>
             <a
               href="/logout"
-              className="flex items-center px-2 py-1 ml-3 rounded-md text-gray-600 hover:text-gray-700 hover:bg-gray-200 transition-colors transform"
+              className="flex items-center py-1 ml-3 rounded-md text-gray-600 hover:text-gray-700 hover:bg-gray-200 transition-colors transform"
             >
               <FiLogOut className="m-2 rounded-md text-gray-600 hover:text-gray-700 hover:bg-gray-200 transition-colors transform" />
             </a>
