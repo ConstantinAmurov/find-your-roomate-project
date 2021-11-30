@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router";
 import { useDispatch } from "react-redux";
-import { useMutation } from "react-query";
+import { useQuery } from "react-query";
 import { getRoom } from "../../api/Rooms API";
 import { MdOutlineBedroomParent } from "react-icons/md";
 import { AiFillContacts } from "react-icons/ai";
@@ -12,8 +12,10 @@ import { errorNotification } from "../../components/Layouts/Public/Notifications
 const Room = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { isLoading, error, data } = useMutation(["room", id], getRoom);
-
+  const { isLoading, error, data } = useQuery(["room", id], () =>
+    getRoom(id)
+  );
+  debugger;
   if (isLoading) {
     return <Spinner />;
   }
@@ -27,16 +29,16 @@ const Room = () => {
         <div className="col-3 text-center">
           <MdOutlineBedroomParent className="w-64 h-64 m-auto" />
           <h1 className="text-2xl font-bold mt-3">Rent Price:</h1>{" "}
-          <span className="mt-4 text-4xl"> 20$</span>
+          <span className="mt-4 text-4xl"> {data.rent} euro</span>
         </div>
         <div className="col-8">
           <div className="row">
             <div className="col">
-              <Info label="Country" text={"Hungary"} />
-              <Info label="City" text={"Budapest"} />
+              <Info label="Country" text={data.country} />
+              <Info label="City" text={data.city} />
             </div>
             <div className="col">
-              <Info label="Number of rooms" text={"3"} />
+              <Info label="Number of rooms" text={data.number_of_rooms} />
             </div>
           </div>
           <div className="row mt-20">
