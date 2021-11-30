@@ -2,7 +2,6 @@ import React from "react";
 import { MdOutlineBedroomParent } from "react-icons/md";
 import { browserRedirect } from "../../helpers/helpers";
 const RoomBox = ({ data, index, children }) => {
-  debugger;
   return (
     <div
       key={index}

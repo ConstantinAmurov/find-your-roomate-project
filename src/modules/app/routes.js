@@ -1,6 +1,6 @@
 import { Switch } from "react-router-dom";
 import React, { Suspense, lazy } from "react";
-import { Router } from "react-router";
+import { Router,Route } from "react-router";
 
 import history from "../../config/history";
 import PrivateRoute from "../../helpers/privateRoutes"; // Private Routes, Will only accessible after Login
@@ -22,6 +22,8 @@ const Register = lazy(() => import("../Register"));
 
 const ForgotPassword = lazy(() => import("../ForgotPassword"));
 const ResetPassword = lazy(() => import("../ResetPassword"));
+const VerifyEmail = lazy(() => import("../VerifyEmail"));
+
 const SetupAccount = lazy(() => import("../Setup"));
 
 const User = lazy(() => import('../User'));
@@ -45,8 +47,9 @@ const App = () => {
           <PrivateRoute exact path="/room/:id" component={Room} />
           <PrivateRoute exact path="/setup-account" component={SetupAccount} />
           <PrivateRoute exact path="/add-property" component={AddProperty} />
-
-        
+          <Route path="/api/verify-email">
+            <VerifyEmail />
+          </Route>
           <PrivateRoute path="/logout" component={Logout} />
         </Switch>
       </Suspense>

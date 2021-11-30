@@ -21,7 +21,7 @@ const ResetPasswordComponent = (props) => {
           <HeaderContainer />
           <h1 className="text-5xl text-white"> Create New Password</h1>
           <p className="mt-3 text-xl text-white">
-            Your new password should contain at least 6 characters
+            Your new password should contain at least 8 characters
           </p>
           <ResetPasswordForm onSubmit={onSubmit} />
         </FormContainer>

@@ -1,5 +1,6 @@
 import React from "react";
 import history from "../config/history";
+import { useLocation } from "react-router";
 
 export const DisplayFormikState = (props) => (
   <div style={{ margin: "1rem 0" }}>
@@ -45,6 +46,18 @@ export const checkUserSetup = () => {
   if (user.is_setup) {
     return true;
   }
-  debugger;
   return false;
+};
+
+export const checkEmailVerified = () => {
+  const user = getUser();
+  if (user.email_verified_at)
+    return true;
+  return false;
+};
+
+export const useQuery = () => {
+  const { search } = useLocation();
+
+  return React.useMemo(() => new URLSearchParams(search), [search]);
 };

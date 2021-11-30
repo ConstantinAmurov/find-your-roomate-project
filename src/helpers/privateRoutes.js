@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { checkAuthorization, checkUserSetup } from '../helpers/helpers';
+import { checkAuthorization, checkEmailVerified, checkUserSetup } from '../helpers/helpers';
 import { warnNotification } from '../components/Layouts/Public/NotificationsComponent/actions';
 import { getUser } from '../helpers/helpers';
 
@@ -19,18 +19,23 @@ const PrivateRoute = ({
   const Routes = (props) => {
     const dispatch = useDispatch();
     if (checkAuthorization() === true) {
-      if (checkUserSetup()) return (
-        <Route
-          {...rest}
-          render={props =>
-            <div className="privateRoute">
-              <Home></Home>
-              <Sidebar />
-              <Component {...rest} {...props} />
-            </div>
-          }
-        />
-      );
+      if (checkUserSetup()) {
+        if (checkEmailVerified() === false) {
+          dispatch(warnNotification('Your Email is not verified'));
+        }
+        return (
+          <Route
+            {...rest}
+            render={props =>
+              <div className="privateRoute">
+                <Home></Home>
+                <Sidebar />
+                <Component {...rest} {...props} />
+              </div>
+            }
+          />
+        );
+      }
       else {
         dispatch(warnNotification("Your account is not setup, we redirected you"));
         return (<Route
@@ -42,7 +47,7 @@ const PrivateRoute = ({
           }
         />);
       }
-    }
+    };
     return (
       <Redirect
         to={{

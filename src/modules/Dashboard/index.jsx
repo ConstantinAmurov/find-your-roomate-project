@@ -6,7 +6,6 @@ import AdminDashboard from "./AdminDashboard";
 
 const Home = () => {
   const user = getUser();
-  debugger;
   if (user.type === "user") return <UserDashboard />;
   else return <AdminDashboard />;
 };

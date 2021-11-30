@@ -4,11 +4,12 @@ import { useMutation } from "react-query";
 
 import { login } from "../../api/Login API";
 import { loginSuccess } from "./actions";
+import { errorNotification } from "../../components/Layouts/Public/NotificationsComponent/actions";
 import {
-  successNotification,
-  errorNotification,
-} from "../../components/Layouts/Public/NotificationsComponent/actions";
-import { setAuthToken, setUser, browserRedirect } from "../../helpers/helpers";
+  setAuthToken,
+  setUser,
+  browserRedirect,
+} from "../../helpers/helpers";
 
 import LoginComponent from "./login";
 
@@ -22,10 +23,6 @@ const Index = () => {
         setAuthToken(data.token);
         setUser(data.user);
         dispatch(loginSuccess(data.user));
-
-        //temporary fix for auth
-
-        dispatch(successNotification("Successfuly Logged in"));
         browserRedirect("/");
       },
       onError: () => {
