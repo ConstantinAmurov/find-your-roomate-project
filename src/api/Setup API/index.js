@@ -5,7 +5,6 @@ import { request } from "../../helpers/requests";
 export const setupAccount = async ({ id, values }) => {
 
     try {
-        debugger;
         const { data } = await request('post', `${urls.SETUP_ACCOUNT}/${id}`, values, null);
         return data;
     }

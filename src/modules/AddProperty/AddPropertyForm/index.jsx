@@ -6,7 +6,6 @@ import Input from "components/Layouts/Public/Input";
 import Button from "components/Layouts/Public/Button";
 const AddPropertyForm = (props) => {
   const { onSubmit } = props;
-  debugger;
   return (
     <div>
       <Formik

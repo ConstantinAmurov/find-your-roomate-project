@@ -2,6 +2,7 @@ import React from "react";
 
 import { useDispatch } from "react-redux";
 import { useMutation } from "react-query";
+import { useQuery } from "helpers/helpers";
 
 import ResetPasswordComponent from "./resetPassword";
 
@@ -15,18 +16,25 @@ import { resetPassword } from "../../api/Reset Password API";
 import { browserRedirect } from "../../helpers/helpers";
 
 const Index = () => {
+  const query = useQuery();
   const { mutate } = useMutation(resetPassword);
   const dispatch = useDispatch();
 
   const onSubmit = (values) => {
-    debugger;
-    mutate(values, {
-      onSuccess: () => {
-        dispatch(successNotification("Reset password successfuly"));
-        browserRedirect("/login");
+    mutate(
+      {
+        token: query.get("token"),
+        email: query.get("email"),
+        ...values,
       },
-      onError: () => dispatch(errorNotification("Error on reset password")),
-    });
+      {
+        onSuccess: () => {
+          dispatch(successNotification("Reset password successfuly"));
+          browserRedirect("/login");
+        },
+        onError: () => dispatch(errorNotification("Error on reset password")),
+      }
+    );
   };
 
   return <ResetPasswordComponent onSubmit={onSubmit} />;
