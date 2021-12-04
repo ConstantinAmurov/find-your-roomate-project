@@ -80,8 +80,8 @@ const SearchForm = (props) => {
               </div>
             </div>
             <div className="row ">
-              <div className="col flex justify-content-end">
-                <button className=" text-2xl text-white flex align-items-center  font-bold flex py-2 px-4 rounded-md hover:bg-gray-100 hover:text-blue-500 transition-colors transform">
+              <div className="col flex justify-content-end text-white">
+                <button className=" text-2xl flex align-items-center  font-bold flex py-2 px-4 rounded-md hover:bg-gray-100  hover:text-blue-500 transition-colors transform">
                   <BsSearch className="mr-2" /> Search
                 </button>
               </div>
