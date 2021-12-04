@@ -15,7 +15,7 @@ const UserDashboard = (props) => {
   const id = 7;
 
   const { isLoading, error, data } = useQuery(`pendingMatches[${id}]`, () =>
-    getUser(id)
+  getUser(id)
   );
   if (isLoading) return <Spinner />;
 

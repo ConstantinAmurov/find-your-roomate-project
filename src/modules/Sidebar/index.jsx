@@ -4,7 +4,7 @@ import { MdSettings } from "react-icons/md";
 import { FiLogOut } from "react-icons/fi";
 import { userLinks, adminLinks } from "./data";
 
-import { getUser } from "../../helpers/helpers";
+import { getLocalUser } from "../../helpers/helpers";
 
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
@@ -15,7 +15,7 @@ import Logo from "../../assets/Logo.png";
 const Sidebar = () => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
-  const user = getUser();
+  const user = getLocalUser();
   const isSidebarOpen = useSelector((state) => state.dashboard.isSidebarOpen);
 
   let links;

@@ -15,7 +15,7 @@ export const getUser = async (id) => {
 
 export const getOwner = async (id) => {
     try {
-        const { data } = await request('post', `${urls.GET_OWNER}/${id}`, null, null);
+        const { data } = await request('get', `${urls.GET_OWNER}/${id}`, null, null);
         return data;
     }
     catch (error) {

@@ -29,7 +29,6 @@ const User = () => {
       </div>
     );
   }
-  debugger;
   return (
     <>
       <div className="m-16 text-blue-600">

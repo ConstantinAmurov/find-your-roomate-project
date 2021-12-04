@@ -4,7 +4,7 @@ import { Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { checkAuthorization, checkEmailVerified, checkUserSetup } from '../helpers/helpers';
 import { warnNotification } from '../components/Layouts/Public/NotificationsComponent/actions';
-import { getUser } from '../helpers/helpers';
+import { getLocalUser } from '../helpers/helpers';
 
 import Home from '../modules/Home';
 import Sidebar from '../modules/Sidebar';
@@ -23,6 +23,7 @@ const PrivateRoute = ({
         if (checkEmailVerified() === false) {
           dispatch(warnNotification('Your Email is not verified'));
         }
+        
         return (
           <Route
             {...rest}
@@ -42,7 +43,7 @@ const PrivateRoute = ({
           {...rest}
           render={props =>
             <div className="publicRoute">
-              <SetupAccount type={getUser().type} />
+              <SetupAccount type={getLocalUser().type} />
             </div>
           }
         />);
