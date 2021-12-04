@@ -44,3 +44,15 @@ export const deleteRoom = async (id) => {
         throw Error(error);
     }
 };
+
+export const requestRoom = async (values) => {
+
+    try {
+        const { data } = await request('post', urls.REQUEST_ROOM, values, null);
+        return data;
+    }
+    catch (error) {
+        throw Error(error);
+    }
+
+};

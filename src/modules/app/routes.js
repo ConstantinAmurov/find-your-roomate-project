@@ -8,7 +8,7 @@ import PrivateRoute from "../../helpers/privateRoutes"; // Private Routes, Will 
 import AuthRoute from "../../helpers/authRoutes"; // Auth Routes, Will only accessible before login.
 import Spinner from "../../components/Spinner/Spinner";
 import AddProperty from "modules/AddProperty";
-import { getLocalUser, refreshUser } from "helpers/helpers";
+import { checkAuthorization, getLocalUser, refreshUser } from "helpers/helpers";
 
 // Lazy loading of all the components.
 const Dashboard = lazy(() => import('../Dashboard'));
@@ -31,9 +31,13 @@ const User = lazy(() => import('../User'));
 // Root routes
 const App = () => {
   useEffect(async () => {
-    debugger;
-    const user = getLocalUser();
-    await refreshUser(user.id, user.type);
+
+    if (checkAuthorization()) {
+
+      const user = getLocalUser();
+      await refreshUser(user.id, user.type);
+    }
+
   });
 
 

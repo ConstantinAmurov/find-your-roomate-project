@@ -15,7 +15,7 @@ import CommonPassionsList from "./Common Passions";
 const User = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { isLoading, error, data } = useQuery(`user[${id}]`, () => getUser(id));
+  const { isLoading, error, data } = useQuery(["user", id], () => getUser(id));
 
   if (isLoading) return <Spinner />;
 

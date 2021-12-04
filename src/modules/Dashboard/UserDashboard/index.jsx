@@ -12,10 +12,10 @@ import UserBox from "modules/UserBox";
 import { getUser } from "api/Users API";
 const UserDashboard = (props) => {
   const dispatch = useDispatch();
-  const id = 7;
+  const id = 2;
 
-  const { isLoading, error, data } = useQuery(`pendingMatches[${id}]`, () =>
-  getUser(id)
+  const { isLoading, error, data } = useQuery(["pendingMatch", id], () =>
+    getUser(id)
   );
   if (isLoading) return <Spinner />;
 

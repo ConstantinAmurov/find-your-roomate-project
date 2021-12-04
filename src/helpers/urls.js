@@ -8,6 +8,7 @@ export const urls = {
     'ALL_ROOM': "/all-room",
     'GET_ROOM': '/room',
     'ADD_ROOM': '/add-room',
+    'REQUEST_ROOM': '/request-email',
     'DELETE_ROOM': "/delete-room",
     'GET_USER': '/user',
     'GET_OWNER': '/owner',
