@@ -5,8 +5,8 @@ import * as Yup from "yup";
 export const genders = ["Male", "Female"];
 
 export const genderOptions = [
-    { value: "M", label: "Male" },
-    { value: "F", label: "Female" },
+    { value: "Male", label: "Male" },
+    { value: "Female", label: "Female" },
 ];
 export const passionsOptions = [
     { value: "self-care", label: "Self-care" },
@@ -30,6 +30,7 @@ export const passionsOptions = [
 export const userValidation = Yup.object().shape({
     gender: Yup.string().required("Required"),
     birthday: Yup.date().required("Required"),
+    max_rent: Yup.number().required('Required'),
     passions: Yup.array()
         .required("Required")
         .min(3, "At least 3 passion required"),

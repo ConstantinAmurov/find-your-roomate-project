@@ -21,7 +21,7 @@ const ThirdStepForm = ({ props, type }) => {
   return (
     <div className="mt-2 mb-2">
       <h1 className="text-5xl text-white text-center">
-        {type === "user" ? "Roommate prefences" : "Tenant preferences"}
+        {type === "user" ? "Roommate preferences" : "Tenant preferences"}
       </h1>
       <div className="row mt-3">
         <div className="col-lg-6 col-md-12">

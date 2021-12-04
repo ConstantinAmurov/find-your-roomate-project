@@ -3,7 +3,7 @@ import React from "react";
 import Select from "../../../components/Layouts/Public/CustomSelectComponent";
 import Input from "../../../components/Layouts/Public/Input";
 
-import { genderOptions,passionsOptions } from "../constants";
+import { genderOptions, passionsOptions } from "../constants";
 
 const FirstStepForm = ({ props, type }) => {
   const {
@@ -45,8 +45,9 @@ const FirstStepForm = ({ props, type }) => {
         </div>
       </div>
       <div className="row">
-        <div className="col">
-          {type === "user" && (
+        {type === "user" && (
+          <>
+          <div className="col">
             <Select
               label="Passions"
               options={passionsOptions}
@@ -60,8 +61,21 @@ const FirstStepForm = ({ props, type }) => {
               touched={touched.passions}
               error={errors.passions}
             ></Select>
-          )}
-        </div>
+          </div>
+             <div className="col">
+             <Input
+            id="max_rent"
+            value={values["max_rent"]}
+            label="Budget"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            type="number"
+            touched={touched.max_rent}
+            error={errors.max_rent}
+          ></Input>
+           </div>
+           </>
+        )}
       </div>
     </div>
   );

@@ -60,7 +60,6 @@ const SetupAccount = (props) => {
     };
     delete values.maxAgeRange;
     delete values.minAgeRange;
-
     mutate(
       {
         id: user.id,
@@ -87,6 +86,7 @@ const SetupAccount = (props) => {
             <Formik
               initialValues={{
                 gender: "",
+                max_rent: 1,
                 birthday: "",
                 passions: [],
                 country: "",
