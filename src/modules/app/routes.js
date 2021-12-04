@@ -1,6 +1,6 @@
 import { Switch } from "react-router-dom";
-import React, { Suspense, lazy } from "react";
-import { Router,Route } from "react-router";
+import React, { Suspense, lazy, useEffect } from "react";
+import { Router, Route } from "react-router";
 
 import history from "../../config/history";
 import PrivateRoute from "../../helpers/privateRoutes"; // Private Routes, Will only accessible after Login
@@ -8,6 +8,7 @@ import PrivateRoute from "../../helpers/privateRoutes"; // Private Routes, Will 
 import AuthRoute from "../../helpers/authRoutes"; // Auth Routes, Will only accessible before login.
 import Spinner from "../../components/Spinner/Spinner";
 import AddProperty from "modules/AddProperty";
+import { getLocalUser, refreshUser } from "helpers/helpers";
 
 // Lazy loading of all the components.
 const Dashboard = lazy(() => import('../Dashboard'));
@@ -29,6 +30,12 @@ const SetupAccount = lazy(() => import("../Setup"));
 const User = lazy(() => import('../User'));
 // Root routes
 const App = () => {
+  useEffect(async () => {
+    debugger;
+    const user = getLocalUser();
+    await refreshUser(user.id, user.type);
+  });
+
 
   return (
     <Router history={history}>

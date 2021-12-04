@@ -1,11 +1,11 @@
 import React from "react";
 
-import { getUser } from "helpers/helpers";
+import { getLocalUser } from "helpers/helpers";
 import UserDashboard from "./UserDashboard";
 import AdminDashboard from "./AdminDashboard";
 
 const Home = () => {
-  const user = getUser();
+  const user = getLocalUser();
   if (user.type === "user") return <UserDashboard />;
   else return <AdminDashboard />;
 };

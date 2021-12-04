@@ -9,7 +9,7 @@ import {
   successNotification,
   errorNotification,
 } from "components/Layouts/Public/NotificationsComponent/actions";
-import { getUser } from "helpers/helpers";
+import { getLocalUser, refreshUser } from "helpers/helpers";
 
 const AddProperty = () => {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ const AddProperty = () => {
   const onSubmit = (values) => {
     mutate(
       {
-        id: getUser().id,
+        id: getLocalUser().id,
         values: values,
       },
       {

@@ -16,7 +16,6 @@ export const getRooms = async (values) => {
 
 export const getRoom = async (id) => {
     try {
-        debugger;
         const { data } = await request('get', `${urls.GET_ROOM}/${id}`, null);
         return data;
     }
@@ -36,9 +35,9 @@ export const addRoom = async ({ id, values }) => {
     }
 };
 
-export const deleteRoom = async ({ id, values }) => {
+export const deleteRoom = async (id) => {
     try {
-        const { data } = await request('post', `${urls.DELETE_ROOM}/${id}`, values, null);
+        const { data } = await request('get', `${urls.DELETE_ROOM}/${id}`, null, null);
         return data;
     }
     catch (error) {

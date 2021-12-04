@@ -18,7 +18,6 @@ const Rooms = () => {
   if (error) {
     dispatch(errorNotification("Error getting your rooms"));
   }
-  debugger;
   return (
     <>
         <SearchBar />

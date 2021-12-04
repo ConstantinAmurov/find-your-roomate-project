@@ -9,13 +9,10 @@ import Info from "../User/Info";
 import Spinner from "../../components/Spinner/Spinner";
 import { errorNotification } from "../../components/Layouts/Public/NotificationsComponent/actions";
 
-const Room = () => {
+const Room = ({ children }) => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { isLoading, error, data } = useQuery(["room", id], () =>
-    getRoom(id)
-  );
-  debugger;
+  const { isLoading, error, data } = useQuery(["room", id], () => getRoom(id));
   if (isLoading) {
     return <Spinner />;
   }
@@ -47,24 +44,9 @@ const Room = () => {
                 label="Info"
                 text="orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris "
               />
-              <div className="row mt-4">
-                <div className="col ">
-                  <Info label="Preferenced Gender" text={"Male"} />
-                </div>
-                <div className="col">
-                  <Info label="Preferenced Age" text={"20-25"} />
-                </div>
-              </div>
             </div>
           </div>
-          <div className="row mt-20">
-            <div className="col-12 ">
-              <button className="border-blue-600 border-2 flex text-blue-600 rounded-2xl px-7 py-4 text-3xl hover:bg-blue-600 hover:text-white transition-colors transform">
-                Contact Owner
-                <AiFillContacts className="ml-3  text-blue-600 text-4xl  transition-colors transform" />
-              </button>
-            </div>
-          </div>
+          <div className="row mt-20">{children}</div>
         </div>
       </div>
     </div>

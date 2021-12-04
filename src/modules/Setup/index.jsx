@@ -20,12 +20,12 @@ import {
 } from "../../components/Layouts/Public/NotificationsComponent/actions";
 import { setupAccount } from "../../api/Setup API";
 import {
-  getUser,
+  getLocalUser,
   browserRedirect,
   deleteUser,
 } from "../../helpers/helpers";
 const SetupAccount = (props) => {
-  const user = getUser();
+  const user = getLocalUser();
   const { type } = props;
   const { mutate } = useMutation(setupAccount);
   const dispatch = useDispatch();

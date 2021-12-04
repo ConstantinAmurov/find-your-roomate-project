@@ -1,6 +1,7 @@
 import React from "react";
 import history from "../config/history";
 import { useLocation } from "react-router";
+import { getOwner, getUser } from "api/Users API";
 
 export const DisplayFormikState = (props) => (
   <div style={{ margin: "1rem 0" }}>
@@ -25,7 +26,7 @@ export const browserRedirect = (location) => {
 export const setAuthToken = (value) => window.localStorage.setItem('token', value);
 export const setUser = (value) => window.localStorage.setItem('user', JSON.stringify(value));
 
-export const getUser = () => JSON.parse(window.localStorage.getItem('user'));
+export const getLocalUser = () => JSON.parse(window.localStorage.getItem('user'));
 
 export const deleteUser = () => {
   localStorage.removeItem('user');
@@ -42,7 +43,7 @@ export const checkAuthorization = () => {
 
 
 export const checkUserSetup = () => {
-  const user = getUser();
+  const user = getLocalUser();
   if (user.is_setup) {
     return true;
   }
@@ -50,7 +51,7 @@ export const checkUserSetup = () => {
 };
 
 export const checkEmailVerified = () => {
-  const user = getUser();
+  const user = getLocalUser();
   if (user.email_verified_at)
     return true;
   return false;
@@ -60,4 +61,19 @@ export const useQuery = () => {
   const { search } = useLocation();
 
   return React.useMemo(() => new URLSearchParams(search), [search]);
+};
+
+export const refreshUser = async (id, type) => {
+  switch (type) {
+    case "user":
+      const user = await getUser(id);
+      setUser(user);
+      break;
+    case "owner":
+      const owner = await getOwner(id);
+      setUser(owner);
+      break;
+  }
+
+
 };
