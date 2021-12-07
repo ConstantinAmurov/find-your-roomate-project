@@ -5,12 +5,16 @@ import { useState } from "react";
 
 import SearchForm from "./SearchForm";
 
+import { useMutation } from "react-query";
 const SearchBar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const onSubmit = () => {};
   return (
     <div
-      className={` transition-height duration-150 h-10 ${isOpen && 'h-80'} px-20 py-1  w-full bg-blue-500 cursor-pointer`}
+      className={` transition-height duration-150 h-10 ${
+        isOpen && "h-80"
+      } px-20 py-1  w-full bg-blue-500 cursor-pointer`}
     >
       <span
         onClick={() => setIsOpen(!isOpen)}
@@ -23,7 +27,7 @@ const SearchBar = () => {
         />
         Advanced Search
       </span>
-      {isOpen ? <SearchForm /> : ""}
+      {isOpen ? <SearchForm onSubmit={onSubmit} /> : ""}
     </div>
   );
 };

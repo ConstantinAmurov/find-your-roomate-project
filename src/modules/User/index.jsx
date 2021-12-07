@@ -11,13 +11,21 @@ import Spinner from "components/Spinner/Spinner";
 import { errorNotification } from "components/Layouts/Public/NotificationsComponent/actions";
 
 import CommonPassionsList from "./Common Passions";
+import { getLocalUser } from "helpers/helpers";
+import { getPotentialMatches } from "api/Matches API";
 
 const User = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { isLoading, error, data } = useQuery(["user", id], () => getUser(id));
+  const user = getLocalUser();
 
-  if (isLoading) return <Spinner />;
+  const { isLoading, error, data } = useQuery(["user", id], () => getUser(id));
+  const potentialMatches = useQuery("potentialMatch", () =>
+    getPotentialMatches(user.id)
+  );
+  let match;
+
+  if (isLoading || potentialMatches.isLoading) return <Spinner />;
 
   if (error) {
     dispatch(errorNotification("Error on retreiving matched matches"));
@@ -29,51 +37,58 @@ const User = () => {
       </div>
     );
   }
-  return (
-    <>
-      <div className="m-16 text-blue-600">
-        <div className="row">
-          <div className="col-3 text-center">
-            <ImUser className="w-64 h-64 m-auto" />
-            <h1 className="text-2xl font-bold mt-3">Match Percentage:</h1>{" "}
-            <span className="mt-4 text-4xl">20 %</span>
-          </div>
-          <div className="col-8">
-            <div className="row">
-              <div className="col">
-                <Info label="Name" text={data.name} />
-                <Info label="Date of Birth" text={data["birthday"]} />
-              </div>
-              <div className="col">
-                <Info label="Gender" text={data["gender"]} />
-              </div>
+  if (potentialMatches.isSuccess) {
+    debugger;
+    match = potentialMatches.data.filter((data) => data.id === parseInt(id))[0];
+    console.log(match);
+    return (
+      <>
+        <div className="m-16 text-blue-600">
+          <div className="row">
+            <div className="col-3 text-center">
+              <ImUser className="w-64 h-64 m-auto" />
+              <h1 className="text-2xl font-bold mt-3">
+                Match Percentage:
+              </h1>{" "}
+              <span className="mt-4 text-4xl">{match.similarity} %</span>
             </div>
-            <div className="row mt-20">
-              <div className="col-12">
-                <Info label="About me" text="I'm looking for an apartment" />
-                <div className="row mt-4">
-                  <div className="col ">
-                    <Info label="City" text={data.city} />
-                  </div>
-                  <div className="col">
-                    <Info label="Country" text={data.country} />
-                  </div>
-                  <div className="col">
-                    <Info label="Budget" text={`${data.max_rent} euro`} />
+            <div className="col-8">
+              <div className="row">
+                <div className="col">
+                  <Info label="Name" text={data.name} />
+                  <Info label="Date of Birth" text={data["birthday"]} />
+                </div>
+                <div className="col">
+                  <Info label="Gender" text={data["gender"]} />
+                </div>
+              </div>
+              <div className="row mt-20">
+                <div className="col-12">
+                  <Info label="About me" text="I'm looking for an apartment" />
+                  <div className="row mt-4">
+                    <div className="col ">
+                      <Info label="City" text={data.city} />
+                    </div>
+                    <div className="col">
+                      <Info label="Country" text={data.country} />
+                    </div>
+                    <div className="col">
+                      <Info label="Budget" text={`${data.max_rent} euro`} />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="row mt-20">
-              <div className="col-12 ">
-                {/* <CommonPassionsList data={data.passions} /> */}
+              <div className="row mt-20">
+                <div className="col-12 ">
+                  <CommonPassionsList data={match.common_passions} />
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  }
 };
 
 export default User;

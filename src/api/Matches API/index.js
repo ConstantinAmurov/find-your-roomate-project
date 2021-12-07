@@ -2,32 +2,11 @@ import { urls } from "../../helpers/urls";
 
 import { request } from "../../helpers/requests";
 
-const pendingMatches = [
-    { id: "4", name: "Tupac Shakur", matchPercentage: 1, gender: "Male", dateOfBirth: new Date() },
-    { id: "5", name: "Igor Dodon", matchPercentage: 50, gender: "Male", dateOfBirth: new Date() },
-    { id: "6", name: "Francisco Ponchoritoves", matchPercentage: 22, gender: "Male", dateOfBirth: new Date() },
-];
-const acceptedMatches = [
-    { id: "4", name: "Tupac Shakur", matchPercentage: 1, gender: "Male", dateOfBirth: new Date() },
-    { id: "5", name: "Igor Dodon", matchPercentage: 50, gender: "Male", dateOfBirth: new Date() },
-    { id: "6", name: "Francisco Ponchoritoves", matchPercentage: 22, gender: "Male", dateOfBirth: new Date() },
-];
-const requestedMatches = [
-    { id: "4", name: "Tupac Shakur", matchPercentage: 1, gender: "Male", dateOfBirth: new Date() },
-    { id: "6", name: "Francisco Ponchoritoves", matchPercentage: 22, gender: "Male", dateOfBirth: new Date() },
-];
-const incomingMatches = [
-    { id: "4", name: "Tupac Shakur", matchPercentage: 1, gender: "Male", dateOfBirth: new Date() },
-    { id: "5", name: "Igor Dodon", matchPercentage: 50, gender: "Male", dateOfBirth: new Date() },
-    { id: "6", name: "Francisco Ponchoritoves", matchPercentage: 22, gender: "Male", dateOfBirth: new Date() },
-];
-
 
 
 export const getPendingMatches = async (values) => {
     try {
-        const data = await Promise.resolve(pendingMatches);
-        return data;
+
     }
     catch (error) {
         throw Error(error);
@@ -35,8 +14,7 @@ export const getPendingMatches = async (values) => {
 };
 export const getAcceptedMatches = async (values) => {
     try {
-        const data = await Promise.resolve(acceptedMatches);
-        return data;
+
     }
     catch (error) {
         throw Error(error);
@@ -45,8 +23,7 @@ export const getAcceptedMatches = async (values) => {
 
 export const getIncomingMatches = async (values) => {
     try {
-        const data = await Promise.resolve(incomingMatches);
-        return data;
+
     }
     catch (error) {
         throw Error(error);
@@ -54,7 +31,48 @@ export const getIncomingMatches = async (values) => {
 };
 export const getRequestedMatches = async (values) => {
     try {
-        const data = await Promise.resolve(requestedMatches);
+
+    }
+    catch (error) {
+        throw Error(error);
+    }
+};
+
+export const getPotentialMatches = async (id) => {
+    try {
+        const { data } = await request('get', `${urls.GET_POTENTIAL_MATCHES}/${id}`, null, null);
+        return data;
+    }
+    catch (error) {
+        throw Error(error);
+    }
+};
+export const acceptRequest = async (id) => {
+    try {
+        const { data } = await request('get', `${urls.ACCEPT_REQUEST}/${id}`, null, null);
+        return data;
+    }
+    catch (error) {
+        throw Error(error);
+    }
+
+};
+
+export const declineRequest = async (id) => {
+    try {
+        const { data } = await request('get', `${urls.DECLINE_REQUEST}/${id}`, null, null);
+        return data;
+    }
+    catch (error) {
+        throw Error(error);
+    }
+
+};
+
+
+export const sendRequest = async (values) => {
+    try {
+        const { data } = await request('post', urls.SEND_REQUEST, values, null);
         return data;
     }
     catch (error) {

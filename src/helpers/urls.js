@@ -12,4 +12,8 @@ export const urls = {
     'DELETE_ROOM': "/delete-room",
     'GET_USER': '/user',
     'GET_OWNER': '/owner',
+    'GET_POTENTIAL_MATCHES': '/match',
+    'ACCEPT_REQUEST': '/accept-request',
+    'DECLINE_REQUEST': '/decline-request',
+    'SEND_REQUEST': '/new-request',
 };

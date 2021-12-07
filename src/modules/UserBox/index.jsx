@@ -19,7 +19,7 @@ const UserBox = ({ data, index, children }) => {
         </div>
         <div className="col flex align-items-center  text-center  justify-center">
           <div className="text-xl">
-            <h1 className="text-2xl font-bold">20 %</h1>
+            <h1 className="text-2xl font-bold">{data.similarity} %</h1>
             <span>Match</span>
           </div>
         </div>
