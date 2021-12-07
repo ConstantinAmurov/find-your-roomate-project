@@ -1,20 +1,60 @@
 import React from "react";
-import { useQuery } from "react-query";
+import { useQuery, useMutation, useQueryClient } from "react-query";
 import { useDispatch } from "react-redux";
-import UserBox from "../../UserBox";
+import MatchUserBox from "../../UserBox/MatchUserBox";
 import Spinner from "../../../components/Spinner/Spinner";
 import DeclineButton from "../../../components/Layouts/Private/RejectButton";
 
-import { getIncomingMatches } from "../../../api/Matches API";
+import {
+  acceptRequest,
+  getIncomingMatches,
+  getPendingMatches,
+  sendRequest,
+} from "../../../api/Matches API";
 
-import { errorNotification } from "../../../components/Layouts/Public/NotificationsComponent/actions";
+import {
+  errorNotification,
+  successNotification,
+} from "../../../components/Layouts/Public/NotificationsComponent/actions";
+import { getLocalUser } from "helpers/helpers";
+import { declineRequest } from "../../../api/Matches API";
+import AcceptButton from "components/Layouts/Private/AcceptButton";
+import SendButton from "components/Layouts/Private/SendButton";
 
 const IncomingMatches = () => {
-  const id = 1;
+  const user = getLocalUser();
+  const queryClient = useQueryClient();
   const dispatch = useDispatch();
-  const { isLoading, error, data } = useQuery(`incomingMatches[${id}]`, () =>
-    getIncomingMatches(id)
+  const { isLoading, error, data } = useQuery("incomingMatches", () =>
+    getPendingMatches(user.id)
   );
+
+  const acceptRequestMutation = useMutation(acceptRequest);
+  const declineRequestMutation = useMutation(declineRequest);
+
+  const onDeclineRequest = (id) => {
+    declineRequestMutation.mutate(id, {
+      onSuccess: async () => {
+        queryClient.invalidateQueries("incomingMatches");
+        dispatch(successNotification("Declined match successfuly"));
+      },
+      onError: () => dispatch(errorNotification("Error on declining match")),
+    });
+  };
+  const onAcceptMatch = (id) => {
+    acceptRequestMutation.mutate(id,{
+      onSuccess: (data) => {
+        queryClient.invalidateQueries("incomingMatches");
+        dispatch(successNotification("Send request successfuly"));
+        // queryClient.setQueryData("potentialMatch", (oldData) => {
+        //   return oldData.filter((data) => data.id !== values.receiver_id);
+        // });
+      },
+      onError: () => {
+        dispatch(errorNotification("Error on accepting match"));
+      },
+    });
+  };
 
   if (isLoading) return <Spinner />;
 
@@ -35,17 +75,30 @@ const IncomingMatches = () => {
         Incoming Matches
       </h1>
       <div className="row">
-        {data.map((data, index) => {
-          return (
-            <UserBox index={index} data={data}>
-              <div className="row mt-1 text-lg">
-                <div className="col text-center">
-                  <DeclineButton />
+        {data.length > 0 ? (
+          data.map((data, index) => {
+            return (
+              <MatchUserBox index={index} match={data}>
+                <div className="row mt-1 text-lg">
+                  <div className="col text-center">
+                    <AcceptButton onClick={() => onAcceptMatch(data.id)} />
+                  </div>
+                  <div className="col text-center">
+                    <DeclineButton
+                      onClick={() => {
+                        onDeclineRequest(data.id);
+                      }}
+                    />
+                  </div>
                 </div>
-              </div>
-            </UserBox>
-          );
-        })}
+              </MatchUserBox>
+            );
+          })
+        ) : (
+          <h1 className="text-blue-500 text-2xl  mt-6">
+            You don't have any incoming match
+          </h1>
+        )}
       </div>
     </div>
   );

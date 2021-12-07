@@ -15,6 +15,7 @@ const Dashboard = lazy(() => import('../Dashboard'));
 const Matches = lazy(() => import('../Matches'));
 const RequestedMatches = lazy(() => import('../Matches/Requested Matches'));
 const IncomingMatches = lazy(() => import('../Matches/Incoming Matches'));
+const DeclinedMatches = lazy(() => import('../Matches/Declined Matches'));
 const Rooms = lazy(() => import('../Rooms'));
 const Room = lazy(() => import('../Room'));
 const Logout = lazy(() => import("../Dashboard/logout"));
@@ -54,6 +55,7 @@ const App = () => {
           <PrivateRoute exact path="/matches" component={Matches} />
           <PrivateRoute exact path="/requested-matches" component={RequestedMatches} />
           <PrivateRoute exact path="/incoming-matches" component={IncomingMatches} />
+          <PrivateRoute exact path="/declined-matches" component={DeclinedMatches} />
           <PrivateRoute exact path="/rooms" component={Rooms} />
           <PrivateRoute exact path="/room/:id" component={Room} />
           <PrivateRoute exact path="/setup-account" component={SetupAccount} />

@@ -4,9 +4,10 @@ import { request } from "../../helpers/requests";
 
 
 
-export const getPendingMatches = async (values) => {
+export const getPendingMatches = async (id) => {
     try {
-
+        const { data } = await request('get', `${urls.GET_PENDING_MATCHES}/${id}`, null, null);
+        return data;
     }
     catch (error) {
         throw Error(error);
@@ -22,9 +23,10 @@ export const getAcceptedMatches = async (id) => {
     }
 };
 
-export const getIncomingMatches = async (values) => {
+export const getIncomingMatches = async (id) => {
     try {
-
+        const { data } = await request('get', `${urls.GET_INCOMING_MATCHES}/${id}`, null, null);
+        return data;
     }
     catch (error) {
         throw Error(error);
@@ -40,6 +42,17 @@ export const getRequestedMatches = async (id) => {
     }
 };
 
+export const getDeclinedMatches = async (id) => {
+    try {
+        const { data } = await request('get', `${urls.GET_DECLINED_MATCHES}/${id}`, null, null);
+        return data;
+    }
+    catch (error) {
+        throw Error(error);
+    }
+
+};
+
 export const getPotentialMatches = async (id) => {
     try {
         const { data } = await request('get', `${urls.GET_POTENTIAL_MATCHES}/${id}`, null, null);
@@ -51,7 +64,7 @@ export const getPotentialMatches = async (id) => {
 };
 export const acceptRequest = async (id) => {
     try {
-        const { data } = await request('get', `${urls.ACCEPT_REQUEST}/${id}`, null, null);
+        const { data } = await request('post', `${urls.ACCEPT_REQUEST}/${id}`, null, null);
         return data;
     }
     catch (error) {
@@ -62,7 +75,8 @@ export const acceptRequest = async (id) => {
 
 export const declineRequest = async (id) => {
     try {
-        const { data } = await request('get', `${urls.DECLINE_REQUEST}/${id}`, null, null);
+        debugger;
+        const { data } = await request('post', `${urls.DECLINE_REQUEST}/${id}`, null, null);
         return data;
     }
     catch (error) {
