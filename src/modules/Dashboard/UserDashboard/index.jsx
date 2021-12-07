@@ -36,7 +36,7 @@ const UserDashboard = (props) => {
     return (
       <div className="container m-16">
         <h1 className="text-blue-500 text-3xl font-bold -ml-3">
-          Matched Users
+          Potential Matches
         </h1>
       </div>
     );
@@ -61,7 +61,7 @@ const UserDashboard = (props) => {
 
   return (
     <div className="m-16 container">
-      <h1 className="text-blue-500 text-3xl font-bold row">Matched Users</h1>
+      <h1 className="text-blue-500 text-3xl font-bold row">Potential Matches</h1>
       <div className="row">
         {data.map((data, index) => {
           return (

@@ -2,20 +2,22 @@ import React from "react";
 import { useQuery } from "react-query";
 import { useDispatch } from "react-redux";
 
-import UserBox from "../../UserBox";
+import MatchUserBox from "../../UserBox/MatchUserBox";
 import Spinner from "../../../components/Spinner/Spinner";
 import DeclineButton from "../../../components/Layouts/Private/RejectButton";
 
 import { getRequestedMatches } from "../../../api/Matches API";
 
 import { errorNotification } from "../../../components/Layouts/Public/NotificationsComponent/actions";
+import { getLocalUser } from "helpers/helpers";
 
 const RequestedMatches = () => {
-  const id = 1;
+  const user = getLocalUser();
   const dispatch = useDispatch();
 
-  const { isLoading, error, data } = useQuery(`requestedMatches[${id}]`, () =>
-    getRequestedMatches(id)
+  const { isLoading, error, data, isSuccess } = useQuery(
+    "requestedMatches",
+    () => getRequestedMatches(user.id)
   );
 
   if (isLoading) return <Spinner />;
@@ -25,7 +27,7 @@ const RequestedMatches = () => {
     return (
       <div className="container m-16">
         <h1 className="text-blue-500 text-3xl font-bold -ml-3">
-          Incoming Matches
+          Requested Matches
         </h1>
       </div>
     );
@@ -39,13 +41,13 @@ const RequestedMatches = () => {
       <div className="row">
         {data.map((data, index) => {
           return (
-            <UserBox index={index} data={data}>
+            <MatchUserBox index={index} match={data}>
               <div className="row mt-1 text-lg">
                 <div className="col text-center">
                   <DeclineButton />
                 </div>
               </div>
-            </UserBox>
+            </MatchUserBox>
           );
         })}
       </div>

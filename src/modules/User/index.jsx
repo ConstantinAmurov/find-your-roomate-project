@@ -38,7 +38,6 @@ const User = () => {
     );
   }
   if (potentialMatches.isSuccess) {
-    debugger;
     match = potentialMatches.data.filter((data) => data.id === parseInt(id))[0];
     console.log(match);
     return (

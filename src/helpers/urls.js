@@ -13,6 +13,8 @@ export const urls = {
     'GET_USER': '/user',
     'GET_OWNER': '/owner',
     'GET_POTENTIAL_MATCHES': '/match',
+    'GET_ACCEPTED_MATCHES': '/get-accepted-requests',
+    'GET_REQUESTED_MATCHES': '/get-pending-requests',
     'ACCEPT_REQUEST': '/accept-request',
     'DECLINE_REQUEST': '/decline-request',
     'SEND_REQUEST': '/new-request',

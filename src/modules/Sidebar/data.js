@@ -7,7 +7,7 @@ import {
 	FaSketch,
 	FaHome,
 	FaUserFriends,
-	FaFolderOpen,FaPlus
+	FaFolderOpen, FaPlus
 
 } from 'react-icons/fa';
 
@@ -34,6 +34,12 @@ export const userLinks = [
 				id: 4,
 				url: "/incoming-matches",
 				text: "Incoming Matches",
+				icon: <FaUserFriends className="w-3 h-3" />,
+
+			}, {
+				id: 5,
+				url: "/declined-matches",
+				text: "Declined Matches",
 				icon: <FaUserFriends className="w-3 h-3" />,
 
 			}

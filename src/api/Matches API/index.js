@@ -12,9 +12,10 @@ export const getPendingMatches = async (values) => {
         throw Error(error);
     }
 };
-export const getAcceptedMatches = async (values) => {
+export const getAcceptedMatches = async (id) => {
     try {
-
+        const { data } = await request('get', `${urls.GET_ACCEPTED_MATCHES}/${id}`, null, null);
+        return data;
     }
     catch (error) {
         throw Error(error);
@@ -29,9 +30,10 @@ export const getIncomingMatches = async (values) => {
         throw Error(error);
     }
 };
-export const getRequestedMatches = async (values) => {
+export const getRequestedMatches = async (id) => {
     try {
-
+        const { data } = await request('get', `${urls.GET_REQUESTED_MATCHES}/${id}`, null, null);
+        return data;
     }
     catch (error) {
         throw Error(error);
