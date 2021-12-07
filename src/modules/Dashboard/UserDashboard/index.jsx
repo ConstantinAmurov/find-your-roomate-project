@@ -5,6 +5,7 @@ import { useQuery, useQueryClient } from "react-query";
 import {
   errorNotification,
   successNotification,
+  warnNotification,
 } from "components/Layouts/Public/NotificationsComponent/actions";
 import Spinner from "components/Spinner/Spinner";
 
@@ -53,7 +54,7 @@ const UserDashboard = (props) => {
           // });
         },
         onError: () => {
-          dispatch(errorNotification("Request already Sent"));
+          dispatch(warnNotification("Request already sent"));
         },
       }
     );

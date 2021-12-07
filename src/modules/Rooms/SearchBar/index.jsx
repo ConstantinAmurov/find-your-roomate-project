@@ -5,11 +5,19 @@ import { useState } from "react";
 
 import SearchForm from "./SearchForm";
 
-import { useMutation } from "react-query";
+import { useQueryClient } from "react-query";
+import { searchRoom } from "api/Rooms API";
 const SearchBar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const queryClient = useQueryClient();
 
-  const onSubmit = () => {};
+  const onSubmit = async (values) => {
+    try {
+      searchRoom(values).then((data) => {
+        queryClient.setQueryData("rooms", data);
+      });
+    } catch (err) {}
+  };
   return (
     <div
       className={` transition-height duration-150 h-10 ${

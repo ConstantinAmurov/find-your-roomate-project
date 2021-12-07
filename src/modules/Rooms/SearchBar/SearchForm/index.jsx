@@ -9,7 +9,7 @@ const SearchForm = (props) => {
   const { onSubmit } = props;
   return (
     <Formik
-      initialValues={{ country: "", city: "", number_of_rooms: 1, max_rent: 0 }}
+      initialValues={{ country: "", city: "", min_number_of_rooms: 1, max_rent: 0 }}
       onSubmit={onSubmit}
       validateOnChange={false}
       validateOnBlur={true}
@@ -53,15 +53,15 @@ const SearchForm = (props) => {
 
               <div className="col-4">
                 <Input
-                  label="Number of Bedrooms"
+                  label="Minimum number of Bedrooms"
                   type="number"
-                  id="number_of_rooms"
+                  id="min_number_of_rooms"
                   min={1}
-                  value={values.number_of_rooms}
+                  value={values.min_number_of_rooms}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={errors.number_of_rooms}
-                  touched={touched.number_of_rooms}
+                  error={errors.min_number_of_rooms}
+                  touched={touched.min_number_of_rooms}
                 ></Input>
               </div>
               <div className="col-4">

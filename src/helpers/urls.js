@@ -10,6 +10,7 @@ export const urls = {
     'ADD_ROOM': '/add-room',
     'REQUEST_ROOM': '/request-email',
     'DELETE_ROOM': "/delete-room",
+    'SEARCH_ROOM': '/search-room',
     'GET_USER': '/user',
     'GET_OWNER': '/owner',
     'GET_POTENTIAL_MATCHES': '/match',

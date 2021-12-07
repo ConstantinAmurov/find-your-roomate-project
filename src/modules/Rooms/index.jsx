@@ -45,10 +45,10 @@ const Rooms = () => {
       <SearchBar />
       <div className="container m-16">
         <h1 className="text-blue-500 text-3xl font-bold -ml-3">
-          Find your room
+          Find your desired room
         </h1>
         <div className="row">
-          {data.length > 1 ? (
+          {data.length > 0 ? (
             data.map((data, index) => {
               return (
                 <RoomBox index={index} data={data}>

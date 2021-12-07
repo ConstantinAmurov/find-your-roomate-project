@@ -22,7 +22,6 @@ const AdminDashboard = () => {
       onSuccess: async () => {
         dispatch(successNotification("Deleted room successfuly"));
         window.location.reload();
-
       },
       onError: () => dispatch(errorNotification("Error on reset password")),
     });
@@ -47,7 +46,7 @@ const AdminDashboard = () => {
       <h1 className="text-blue-500 text-3xl font-bold row">Your Properties</h1>
 
       <div className="row">
-        {user.rooms &&
+        {user.rooms.length>0 ? (
           user.rooms.map((data, index) => {
             return (
               <RoomBox index={index} data={data}>
@@ -61,7 +60,12 @@ const AdminDashboard = () => {
                 </div>
               </RoomBox>
             );
-          })}
+          })
+        ) : (
+          <h1 className="text-blue-500 text-2xl  mt-7">
+            You don't have properties yet
+          </h1>
+        )}
       </div>
     </div>
   );
