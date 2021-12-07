@@ -4,12 +4,11 @@ import React from "react";
 import { BsSearch } from "react-icons/bs";
 import Input from "../../../../components/Layouts/Public/Input";
 import { Formik } from "formik";
-import * as Yup from "yup";
 const SearchForm = (props) => {
   const { onSubmit } = props;
   return (
     <Formik
-      initialValues={{ country: "", city: "", number_of_rooms: 1, max_rent: 0 }}
+      initialValues={{ country: "", city: "", min_number_of_rooms: 1, max_rent: 0 }}
       onSubmit={onSubmit}
       validateOnChange={false}
       validateOnBlur={true}
@@ -53,15 +52,15 @@ const SearchForm = (props) => {
 
               <div className="col-4">
                 <Input
-                  label="Number of Bedrooms"
+                  label="Minimum number of Bedrooms"
                   type="number"
-                  id="number_of_rooms"
+                  id="min_number_of_rooms"
                   min={1}
-                  value={values.number_of_rooms}
+                  value={values.min_number_of_rooms}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={errors.number_of_rooms}
-                  touched={touched.number_of_rooms}
+                  error={errors.min_number_of_rooms}
+                  touched={touched.min_number_of_rooms}
                 ></Input>
               </div>
               <div className="col-4">
@@ -81,7 +80,7 @@ const SearchForm = (props) => {
             </div>
             <div className="row ">
               <div className="col flex justify-content-end text-white">
-                <button className=" text-2xl flex align-items-center  font-bold flex py-2 px-4 rounded-md hover:bg-gray-100  hover:text-blue-500 transition-colors transform">
+                <button className=" text-2xl flex align-items-center  font-bold py-2 px-4 rounded-md hover:bg-gray-100  hover:text-blue-500 transition-colors transform">
                   <BsSearch className="mr-2" /> Search
                 </button>
               </div>

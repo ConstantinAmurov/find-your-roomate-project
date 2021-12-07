@@ -5,12 +5,24 @@ import { useState } from "react";
 
 import SearchForm from "./SearchForm";
 
+import { useQueryClient } from "react-query";
+import { searchRoom } from "api/Rooms API";
 const SearchBar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const queryClient = useQueryClient();
 
+  const onSubmit = async (values) => {
+    try {
+      searchRoom(values).then((data) => {
+        queryClient.setQueryData("rooms", data);
+      });
+    } catch (err) {}
+  };
   return (
     <div
-      className={` transition-height duration-150 h-10 ${isOpen && 'h-80'} px-20 py-1  w-full bg-blue-500 cursor-pointer`}
+      className={` transition-height duration-150 h-10 ${
+        isOpen && "h-80"
+      } px-20 py-1  w-full bg-blue-500 cursor-pointer`}
     >
       <span
         onClick={() => setIsOpen(!isOpen)}
@@ -23,7 +35,7 @@ const SearchBar = () => {
         />
         Advanced Search
       </span>
-      {isOpen ? <SearchForm /> : ""}
+      {isOpen ? <SearchForm onSubmit={onSubmit} /> : ""}
     </div>
   );
 };

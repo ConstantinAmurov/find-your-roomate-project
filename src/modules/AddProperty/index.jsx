@@ -9,7 +9,7 @@ import {
   successNotification,
   errorNotification,
 } from "components/Layouts/Public/NotificationsComponent/actions";
-import { getLocalUser, refreshUser } from "helpers/helpers";
+import { getLocalUser} from "helpers/helpers";
 
 const AddProperty = () => {
   const dispatch = useDispatch();

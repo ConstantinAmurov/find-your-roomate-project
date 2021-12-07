@@ -56,3 +56,13 @@ export const requestRoom = async (values) => {
     }
 
 };
+
+export const searchRoom = async (values) => {
+    try {
+        const { data } = await request('post', urls.SEARCH_ROOM, values, null);
+        return data;
+    }
+    catch (error) {
+        throw Error(error);
+    }
+};

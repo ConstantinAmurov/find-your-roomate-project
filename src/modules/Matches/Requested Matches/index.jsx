@@ -1,22 +1,39 @@
 import React from "react";
-import { useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useDispatch } from "react-redux";
 
-import UserBox from "../../UserBox";
+import MatchUserBox from "../../UserBox/MatchUserBox";
 import Spinner from "../../../components/Spinner/Spinner";
 import DeclineButton from "../../../components/Layouts/Private/RejectButton";
 
-import { getRequestedMatches } from "../../../api/Matches API";
+import { declineRequest, getRequestedMatches } from "../../../api/Matches API";
 
-import { errorNotification } from "../../../components/Layouts/Public/NotificationsComponent/actions";
+import {
+  errorNotification,
+  successNotification,
+} from "../../../components/Layouts/Public/NotificationsComponent/actions";
+import { getLocalUser } from "helpers/helpers";
 
 const RequestedMatches = () => {
-  const id = 1;
+  const user = getLocalUser();
   const dispatch = useDispatch();
 
-  const { isLoading, error, data } = useQuery(`requestedMatches[${id}]`, () =>
-    getRequestedMatches(id)
+  const { isLoading, error, data} = useQuery(
+    "requestedMatches",
+    () => getRequestedMatches(user.id)
   );
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation(declineRequest);
+
+  const onDeclineRequest = (id) => {
+    mutate(id, {
+      onSuccess: async () => {
+        queryClient.invalidateQueries("requestedMatches");
+        dispatch(successNotification("Declined match successfuly"));
+      },
+      onError: () => dispatch(errorNotification("Error on declining match")),
+    });
+  };
 
   if (isLoading) return <Spinner />;
 
@@ -25,7 +42,7 @@ const RequestedMatches = () => {
     return (
       <div className="container m-16">
         <h1 className="text-blue-500 text-3xl font-bold -ml-3">
-          Incoming Matches
+          Requested Matches
         </h1>
       </div>
     );
@@ -37,17 +54,27 @@ const RequestedMatches = () => {
         Requested Matches
       </h1>
       <div className="row">
-        {data.map((data, index) => {
-          return (
-            <UserBox index={index} data={data}>
-              <div className="row mt-1 text-lg">
-                <div className="col text-center">
-                  <DeclineButton />
+        {data.length > 0 ? (
+          data.map((data, index) => {
+            return (
+              <MatchUserBox index={index} match={data}>
+                <div className="row mt-1 text-lg">
+                  <div className="col text-center">
+                    <DeclineButton
+                      onClick={() => {
+                        onDeclineRequest(data.id);
+                      }}
+                    />
+                  </div>
                 </div>
-              </div>
-            </UserBox>
-          );
-        })}
+              </MatchUserBox>
+            );
+          })
+        ) : (
+          <h1 className="text-blue-500 text-xl mt-8">
+            You have no requests yet, why not try and send a request
+          </h1>
+        )}
       </div>
     </div>
   );

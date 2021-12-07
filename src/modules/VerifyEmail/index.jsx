@@ -53,7 +53,7 @@ const VerifyEmail = () => {
 
       dispatch(errorNotification("Error on verifying the email"));
     }
-  }, []);
+  }, [mutate, pathname, dispatch]);
 
   if (isLoading) {
     return <Spinner />;

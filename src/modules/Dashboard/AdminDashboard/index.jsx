@@ -1,5 +1,5 @@
 import React from "react";
-import { useMutation, useQuery } from "react-query";
+import { useMutation } from "react-query";
 import { useDispatch } from "react-redux";
 import {
   successNotification,
@@ -7,10 +7,9 @@ import {
 } from "components/Layouts/Public/NotificationsComponent/actions";
 
 import Spinner from "components/Spinner/Spinner";
-import { getLocalUser, refreshUser } from "helpers/helpers";
+import { getLocalUser} from "helpers/helpers";
 import RoomBox from "modules/RoomBox";
 import { deleteRoom } from "api/Rooms API";
-import { browserRedirect } from "helpers/helpers";
 
 const AdminDashboard = () => {
   const dispatch = useDispatch();
@@ -22,7 +21,6 @@ const AdminDashboard = () => {
       onSuccess: async () => {
         dispatch(successNotification("Deleted room successfuly"));
         window.location.reload();
-
       },
       onError: () => dispatch(errorNotification("Error on reset password")),
     });
@@ -47,7 +45,7 @@ const AdminDashboard = () => {
       <h1 className="text-blue-500 text-3xl font-bold row">Your Properties</h1>
 
       <div className="row">
-        {user.rooms &&
+        {user.rooms.length>0 ? (
           user.rooms.map((data, index) => {
             return (
               <RoomBox index={index} data={data}>
@@ -61,7 +59,12 @@ const AdminDashboard = () => {
                 </div>
               </RoomBox>
             );
-          })}
+          })
+        ) : (
+          <h1 className="text-blue-500 text-2xl  mt-7">
+            You don't have properties yet
+          </h1>
+        )}
       </div>
     </div>
   );
