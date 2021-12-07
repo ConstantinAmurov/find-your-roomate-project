@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { useQuery } from "react-query";
 import { getRoom } from "../../api/Rooms API";
 import { MdOutlineBedroomParent } from "react-icons/md";
-import { AiFillContacts } from "react-icons/ai";
 import Info from "../User/Info";
 import Spinner from "../../components/Spinner/Spinner";
 import { errorNotification } from "../../components/Layouts/Public/NotificationsComponent/actions";

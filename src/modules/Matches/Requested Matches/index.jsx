@@ -18,7 +18,7 @@ const RequestedMatches = () => {
   const user = getLocalUser();
   const dispatch = useDispatch();
 
-  const { isLoading, error, data, isSuccess } = useQuery(
+  const { isLoading, error, data} = useQuery(
     "requestedMatches",
     () => getRequestedMatches(user.id)
   );

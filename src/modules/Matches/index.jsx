@@ -12,7 +12,6 @@ import {
   successNotification,
 } from "../../components/Layouts/Public/NotificationsComponent/actions";
 import { getLocalUser } from "helpers/helpers";
-import { getUser } from "api/Users API";
 import { useMutation } from "react-query";
 import { declineRequest } from "../../api/Matches API";
 

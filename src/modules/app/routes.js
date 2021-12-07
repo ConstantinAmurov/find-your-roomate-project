@@ -31,12 +31,13 @@ const SetupAccount = lazy(() => import("../Setup"));
 const User = lazy(() => import('../User'));
 // Root routes
 const App = () => {
-  useEffect(async () => {
+  useEffect(() => {
 
     if (checkAuthorization()) {
-
-      const user = getLocalUser();
-      await refreshUser(user.id, user.type);
+      (async () => {
+        const user = getLocalUser();
+        await refreshUser(user.id, user.type);
+      })();
     }
 
   });

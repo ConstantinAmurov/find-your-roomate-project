@@ -1,5 +1,5 @@
 import React from "react";
-import { useMutation, useQuery } from "react-query";
+import { useMutation } from "react-query";
 import { useDispatch } from "react-redux";
 import {
   successNotification,
@@ -7,10 +7,9 @@ import {
 } from "components/Layouts/Public/NotificationsComponent/actions";
 
 import Spinner from "components/Spinner/Spinner";
-import { getLocalUser, refreshUser } from "helpers/helpers";
+import { getLocalUser} from "helpers/helpers";
 import RoomBox from "modules/RoomBox";
 import { deleteRoom } from "api/Rooms API";
-import { browserRedirect } from "helpers/helpers";
 
 const AdminDashboard = () => {
   const dispatch = useDispatch();

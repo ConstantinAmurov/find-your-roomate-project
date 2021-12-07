@@ -1,28 +1,23 @@
 import React from "react";
 
 import { useDispatch } from "react-redux";
-import { useQuery, useMutation } from "react-query";
-import { getDeclinedMatches, getRequestedMatches } from "api/Matches API";
+import { useQuery } from "react-query";
+import { getDeclinedMatches } from "api/Matches API";
 import { getLocalUser } from "helpers/helpers";
-import DeclineButton from "components/Layouts/Private/RejectButton";
 
 import MatchUserBox from "modules/UserBox/MatchUserBox";
-import {
-  errorNotification,
-  successNotification,
-} from "components/Layouts/Public/NotificationsComponent/actions";
-import { useQueryClient } from "react-query";
+import { errorNotification } from "components/Layouts/Public/NotificationsComponent/actions";
+
 import Spinner from "components/Spinner/Spinner";
 
 const DeclinedMatches = () => {
   const user = getLocalUser();
   const dispatch = useDispatch();
 
-  const { isLoading, error, data, isSuccess } = useQuery(
+  const { isLoading, error, data } = useQuery(
     "declinedMatches",
     () => getDeclinedMatches(user.id)
   );
-  const queryClient = useQueryClient();
 
   if (isLoading) return <Spinner />;
 

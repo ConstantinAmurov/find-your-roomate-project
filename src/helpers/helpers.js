@@ -73,7 +73,12 @@ export const refreshUser = async (id, type) => {
       const owner = await getOwner(id);
       setUser(owner);
       break;
+    default:
+      const defaultUser = await getUser(id);
+      setUser(defaultUser);
+      break;
   }
+
 
 
 };

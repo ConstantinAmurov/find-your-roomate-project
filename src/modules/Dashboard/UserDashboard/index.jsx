@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { useQuery, useQueryClient } from "react-query";
+import { useQuery} from "react-query";
 
 import {
   errorNotification,
@@ -14,21 +14,17 @@ import DeclineButton from "components/Layouts/Private/RejectButton";
 import UserBox from "modules/UserBox";
 import {
   getPotentialMatches,
-  acceptRequest,
-  declineRequest,
   sendRequest,
 } from "api/Matches API";
 import { getLocalUser } from "helpers/helpers";
 import { useMutation } from "react-query";
 const UserDashboard = (props) => {
-  const queryClient = useQueryClient();
   const dispatch = useDispatch();
   const user = getLocalUser();
   const { isLoading, error, data } = useQuery("potentialMatch", () =>
     getPotentialMatches(user.id)
   );
   const sendRequestMutation = useMutation(sendRequest);
-  const declineRequestMutation = useMutation(declineRequest);
 
   if (isLoading) return <Spinner />;
 
@@ -62,7 +58,9 @@ const UserDashboard = (props) => {
 
   return (
     <div className="m-16 container">
-      <h1 className="text-blue-500 text-3xl font-bold row">Potential Matches</h1>
+      <h1 className="text-blue-500 text-3xl font-bold row">
+        Potential Matches
+      </h1>
       <div className="row">
         {data.map((data, index) => {
           return (

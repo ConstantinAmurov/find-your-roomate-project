@@ -4,7 +4,6 @@ import React from "react";
 import { BsSearch } from "react-icons/bs";
 import Input from "../../../../components/Layouts/Public/Input";
 import { Formik } from "formik";
-import * as Yup from "yup";
 const SearchForm = (props) => {
   const { onSubmit } = props;
   return (
@@ -81,7 +80,7 @@ const SearchForm = (props) => {
             </div>
             <div className="row ">
               <div className="col flex justify-content-end text-white">
-                <button className=" text-2xl flex align-items-center  font-bold flex py-2 px-4 rounded-md hover:bg-gray-100  hover:text-blue-500 transition-colors transform">
+                <button className=" text-2xl flex align-items-center  font-bold py-2 px-4 rounded-md hover:bg-gray-100  hover:text-blue-500 transition-colors transform">
                   <BsSearch className="mr-2" /> Search
                 </button>
               </div>

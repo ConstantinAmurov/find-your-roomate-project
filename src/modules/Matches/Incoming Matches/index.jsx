@@ -5,12 +5,7 @@ import MatchUserBox from "../../UserBox/MatchUserBox";
 import Spinner from "../../../components/Spinner/Spinner";
 import DeclineButton from "../../../components/Layouts/Private/RejectButton";
 
-import {
-  acceptRequest,
-  getIncomingMatches,
-  getPendingMatches,
-  sendRequest,
-} from "../../../api/Matches API";
+import { acceptRequest, getPendingMatches } from "../../../api/Matches API";
 
 import {
   errorNotification,
@@ -19,7 +14,6 @@ import {
 import { getLocalUser } from "helpers/helpers";
 import { declineRequest } from "../../../api/Matches API";
 import AcceptButton from "components/Layouts/Private/AcceptButton";
-import SendButton from "components/Layouts/Private/SendButton";
 
 const IncomingMatches = () => {
   const user = getLocalUser();
@@ -42,7 +36,7 @@ const IncomingMatches = () => {
     });
   };
   const onAcceptMatch = (id) => {
-    acceptRequestMutation.mutate(id,{
+    acceptRequestMutation.mutate(id, {
       onSuccess: (data) => {
         queryClient.invalidateQueries("incomingMatches");
         dispatch(successNotification("Send request successfuly"));
