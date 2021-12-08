@@ -23,7 +23,6 @@ const VerifyEmail = () => {
   const dispatch = useDispatch();
   const [text, setText] = useState({ title: "", subtitle: "" });
   const { pathname } = useLocation();
-
   const { isLoading, mutate } = useMutation(verifyAccount);
   useEffect(() => {
     if (checkAuthorization())
@@ -53,7 +52,7 @@ const VerifyEmail = () => {
 
       dispatch(errorNotification("Error on verifying the email"));
     }
-  }, [mutate, pathname, dispatch]);
+  }, []);
 
   if (isLoading) {
     return <Spinner />;
