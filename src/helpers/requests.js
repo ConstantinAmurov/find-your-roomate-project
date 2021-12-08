@@ -5,7 +5,7 @@ const API_ROOT = process.env.REACT_APP_NODE_ENV === 'production' ? process.env.R
 export const request = (method, url, payload = null, headers = 1) => {
     let requestData = {
         method: method,
-        url: API_ROOT + url
+        url: API_ROOT + 'api' + url
     };
     if (payload)
         requestData.data = payload;
