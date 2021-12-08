@@ -62,7 +62,7 @@ const UserDashboard = (props) => {
         Potential Matches
       </h1>
       <div className="row">
-        {data.map((data, index) => {
+        {data.length>0 ?data.map((data, index) => {
           return (
             <UserBox index={index} data={data}>
               <div className="row mt-1 text-lg">
@@ -77,7 +77,10 @@ const UserDashboard = (props) => {
               </div>
             </UserBox>
           );
-        })}
+        }):  <h1 className="text-blue-500 text-2xl mt-10">
+        You don't have potential matches yet
+      </h1>
+        }
       </div>
     </div>
   );
