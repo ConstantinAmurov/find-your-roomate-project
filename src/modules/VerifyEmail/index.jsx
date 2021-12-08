@@ -7,6 +7,7 @@ import { useLocation } from "react-router";
 import {
   successNotification,
   errorNotification,
+  warnNotification,
 } from "components/Layouts/Public/NotificationsComponent/actions";
 import { verifyAccount } from "api/Verify Account API";
 import FormContainer from "components/Layouts/Public/FormContainer";
@@ -50,7 +51,9 @@ const VerifyEmail = () => {
         subtitle: "You should be logged in to verify your email",
       });
 
-      dispatch(errorNotification("Error on verifying the email"));
+      dispatch(
+        warnNotification("You should be logged in to verify your email")
+      );
     }
   }, []);
 

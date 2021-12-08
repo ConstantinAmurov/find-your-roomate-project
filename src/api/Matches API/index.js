@@ -75,7 +75,6 @@ export const acceptRequest = async (id) => {
 
 export const declineRequest = async (id) => {
     try {
-        debugger;
         const { data } = await request('post', `${urls.DECLINE_REQUEST}/${id}`, null, null);
         return data;
     }
