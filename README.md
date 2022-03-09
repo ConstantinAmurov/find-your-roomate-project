@@ -8,6 +8,10 @@
 Find Your Roommate is a platform  for students and for property owners where students can register and find potential roommates based on Age, Location and Common Interests. After the registration, the users can see potential roommates and see percentage of their match, as well as all other common and general information.
 For property owners they can register and add their properties so users can search and request a place.
 
+## Project Overview
+UI Design made in Figma:
+https://www.figma.com/file/0oxBQw4dhKBsMcpz4szBiP/FindYourRoomate-team-library?node-id=312%3A2
+
 ## Technologies
 Front-end:
 - React.JS
@@ -54,6 +58,11 @@ npm install
     ```
 3.  The file `.env` is already ignored, so you never commit your credentials.
 4.  Change the values of the file to your environment. Helpful comments added to `.env.example` file to understand the constants.
+5.  As well , the Back-end application should be running in the background, locally or hosted somewhere.
+
+### Link for the back-end project ( not my work)
+https://github.com/CostelMD/find-your-roommate-backend
+
 
 ## How to run
 
