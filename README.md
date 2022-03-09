@@ -1,33 +1,23 @@
 
-# React JS with Redux and Saga Project Structure
-[![Author](http://img.shields.io/badge/author-@maitraysuthar-blue.svg)](https://www.linkedin.com/in/maitray-suthar/) [![GitHub license](https://img.shields.io/github/license/maitraysuthar/rest-api-nodejs-mongodb.svg)](https://github.com/maitraysuthar/react-redux-saga-boilerplate/blob/master/LICENSE)  ![GitHub repo size](https://img.shields.io/github/repo-size/maitraysuthar/react-redux-saga-boilerplate)
+# Find Your Roommate Project
 
-A ready-to-use boilerplate for React JS with Redux and Saga.
+
 
 ## Project Overview
 
-This is a basic project structure with repeatative use cases. Added some essential feature for every projects. It is very useful to build mid to complex level project. This project structure is based on **NodeJs api boilerplate app:** https://github.com/maitraysuthar/rest-api-nodejs-mongodb
+Find Your Roommate is a platform  for students and for property owners where students can register and find potential roommates based on Age, Location and Common Interests. After the registration, the users can see potential roommates and see percentage of their match, as well as all other common and general information.
+For property owners they can register and add their properties so users can search and request a place.
 
-I had tried to maintain the code structure easy as any beginner can also adopt the flow and start building a great app. Project is open for suggestions, Bug reports and pull requests.
+## Technologies
+Front-end:
+- React.JS
+- Redux
+- React Query
+- Tailwind
+Back-end:
+- Laravel
+- PostgreSQL
 
-## Is this project deserves a small treat?
-
-If you consider my project as helpful stuff, You can appreciate me or my hard work and time spent to create this helpful structure with buying a coffee for me.
-
-<a href='https://ko-fi.com/U6U617IA8' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi2.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a> &nbsp;&nbsp; <a href="https://www.buymeacoffee.com/36GgOoQ2f" target="_blank"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
-
-## Features
-
-|Feature|Details  |
-|--|--|
-|  Structure|  Project is build with extenensible and flexible **Moduler** pattern|
-|  Authentication|  Basic Authentication (Register/Login)|
-|  Confirm Account|  Account confirmation with OTP verification|
-|  Route Protection|  Route protection with middleware and localstorage|
-|  Lazy Loading|  Added **Lazy Loading** of components to fasten the execution process of application|
-|  App State Management|  Application level state management with **Redux**|
-|  Async Call|  Managed async calls with **Saga** middleware|
-|  Forms|  Managed apllication forms & validations with **Formik** and **Yup**|
 
 ## Software Requirements
 
@@ -85,10 +75,6 @@ All the modules of the project will be in `/src/modules/` folder, If you need to
 
 ##### Root module:
 Module's root module folder is `/src/modules/app/` it contains main **Routes file (`routes.js`)**, **Reducer file (`mainReducer.js`)** and **Saga file (`mainSaga.js`)**. You will need to add your every component,reducer & saga to make your module work.
-
-## Found any bug? Need any feature?
-
-Every project needs improvements, Feel free to report any bugs or improvements. Pull requests are always welcome.
 
 ## License
 
