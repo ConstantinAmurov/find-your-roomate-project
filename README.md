@@ -60,10 +60,6 @@ npm install
 4.  Change the values of the file to your environment. Helpful comments added to `.env.example` file to understand the constants.
 5.  As well , the Back-end application should be running in the background, locally or hosted somewhere.
 
-### Link for the back-end project ( not my work)
-https://github.com/CostelMD/find-your-roommate-backend
-
-
 ## How to run
 
 ```bash
